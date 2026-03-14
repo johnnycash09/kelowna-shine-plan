@@ -22,7 +22,7 @@ const testimonials = [
   },
 ];
 
-const transition = { type: "spring", duration: 0.5, bounce: 0 };
+const transition = { type: "spring" as const, duration: 0.5, bounce: 0 };
 
 const TestimonialsSection = () => {
   return (

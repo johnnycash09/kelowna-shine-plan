@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { MapPin, Star, Shield } from "lucide-react";
 import heroImage from "@/assets/hero-detailing.jpg";
 
-const transition = { type: "spring", duration: 0.5, bounce: 0 };
+const transition = { type: "spring" as const, duration: 0.5, bounce: 0 };
 
 const HeroSection = () => {
   return (

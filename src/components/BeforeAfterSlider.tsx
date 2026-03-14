@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import beforeImage from "@/assets/before-detail.jpg";
 import afterImage from "@/assets/after-detail.jpg";
 
-const transition = { type: "spring", duration: 0.5, bounce: 0 };
+const transition = { type: "spring" as const, duration: 0.5, bounce: 0 };
 
 const BeforeAfterSlider = () => {
   const [sliderPos, setSliderPos] = useState(50);
