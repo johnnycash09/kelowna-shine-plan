@@ -1,96 +1,98 @@
 import { motion } from "framer-motion";
-import { MapPin, Star, Shield } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 import heroImage from "@/assets/hero-detailing.jpg";
 
-const transition = { type: "spring" as const, duration: 0.5, bounce: 0 };
+const transition = { type: "spring" as const, duration: 0.8, bounce: 0 };
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Image */}
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
+      {/* Cinematic background */}
       <div className="absolute inset-0">
         <img
           src={heroImage}
-          alt="Luxury vehicle with ceramic coating in Kelowna's Okanagan Valley"
-          className="h-full w-full object-cover"
+          alt="Glossy black Porsche with mirror-finish ceramic coating in Kelowna"
+          className="h-full w-full object-cover opacity-90"
           loading="eager"
+          width={1920}
+          height={1080}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/40 to-transparent" />
       </div>
 
-      <div className="container relative z-10 py-24 md:py-32">
-        <div className="max-w-2xl">
-          {/* Trust Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+      <div className="container relative z-10 pt-32 pb-20 md:pt-40 md:pb-28">
+        <div className="max-w-3xl">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...transition, delay: 0.1 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-4 py-2 backdrop-blur-sm"
+            className="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-accent"
           >
-            <MapPin className="h-4 w-4 text-primary" />
-            <span className="font-mono text-sm text-muted-foreground">Kelowna, BC · 100% Mobile</span>
-          </motion.div>
-
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...transition, delay: 0.2 }}
-            className="font-display text-4xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl"
-          >
-            The Okanagan's Premier{" "}
-            <span className="text-gradient-primary">Mobile Paint Protection</span>
-          </motion.h1>
-
-          {/* Subheadline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...transition, delay: 0.3 }}
-            className="mt-6 max-w-lg text-lg text-muted-foreground"
-          >
-            Professional detailing, ceramic coating, and paint correction — delivered to your door. 
-            We bring the studio to you.
+            Kelowna · Mobile · By Appointment
           </motion.p>
 
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ ...transition, delay: 0.4 }}
-            className="mt-8 flex flex-wrap gap-6"
+            transition={{ ...transition, delay: 0.2 }}
+            className="font-display text-5xl font-semibold leading-[0.95] tracking-tight text-foreground text-balance sm:text-6xl lg:text-7xl xl:text-[5.5rem]"
           >
-            <div className="flex items-center gap-2">
-              <Star className="h-5 w-5 text-accent" />
-              <span className="font-mono text-sm text-foreground tabular-nums">5.0 ★ (140+ Reviews)</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Shield className="h-5 w-5 text-primary" />
-              <span className="font-mono text-sm text-foreground">9H Ceramic Hardness</span>
-            </div>
-          </motion.div>
+            Kelowna's<br />
+            <span className="text-gradient-primary">Automotive Surface Studio.</span>
+          </motion.h1>
 
-          {/* CTAs */}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...transition, delay: 0.35 }}
+            className="mt-8 max-w-xl text-lg text-muted-foreground sm:text-xl"
+          >
+            Premium mobile detailing for vehicles that deserve more.
+          </motion.p>
+
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...transition, delay: 0.5 }}
-            className="mt-10 flex flex-wrap gap-4"
+            className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4"
           >
             <a
-              href="#packages"
-              className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-4 font-display text-sm font-semibold text-primary-foreground transition-transform active:scale-[0.98] hover:brightness-110"
-            >
-              View Packages
-            </a>
-            <a
               href="#contact"
-              className="inline-flex items-center justify-center rounded-lg border border-border bg-secondary/50 px-8 py-4 font-display text-sm font-semibold text-foreground backdrop-blur-sm transition-transform active:scale-[0.98] hover:bg-secondary"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-8 py-4 font-display text-base font-semibold text-background transition-all active:scale-[0.98] hover:bg-accent"
             >
               Book Now
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </a>
+            <a
+              href="#services"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background/40 px-8 py-4 font-display text-base font-medium text-foreground backdrop-blur-md transition-colors hover:bg-secondary"
+            >
+              Explore Services
             </a>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ ...transition, delay: 0.7 }}
+            className="mt-12 flex items-center gap-3"
+          >
+            <div className="flex">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <Star key={i} className="h-4 w-4 fill-accent text-accent" />
+              ))}
+            </div>
+            <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+              5.0 · Trusted by Kelowna vehicle owners
+            </span>
+          </motion.div>
         </div>
+      </div>
+
+      {/* Scroll cue */}
+      <div className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 md:block">
+        <div className="h-10 w-[1px] bg-gradient-to-b from-transparent via-foreground/40 to-transparent" />
       </div>
     </section>
   );

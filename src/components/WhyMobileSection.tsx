@@ -1,60 +1,44 @@
 import { motion } from "framer-motion";
-import { Clock, MapPin, Sparkles } from "lucide-react";
 
-const benefits = [
-  {
-    icon: MapPin,
-    title: "We Come to You",
-    description: "No drop-offs. No waiting rooms. We detail at your home, office, or wherever your vehicle is.",
-  },
-  {
-    icon: Clock,
-    title: "Save Your Time",
-    description: "Go about your day while we bring your vehicle back to showroom condition.",
-  },
-  {
-    icon: Sparkles,
-    title: "Studio-Grade Results",
-    description: "Full mobile setup with filtered water, professional lighting, and premium products.",
-  },
+const points = [
+  { n: "01", title: "We come to you", body: "Home, office, dealership, marina. Your driveway becomes the studio." },
+  { n: "02", title: "Premium products only", body: "Gyeon, CarPro, Rupes. The same systems used on flagship vehicles." },
+  { n: "03", title: "Trusted by high-end clients", body: "Daily-driven Teslas, weekend Porsches, work trucks, RVs and boats." },
+  { n: "04", title: "Obsessive attention", body: "We finish every panel, every stitch, every vent — or it isn't done." },
 ];
 
-const transition = { type: "spring" as const, duration: 0.5, bounce: 0 };
+const transition = { type: "spring" as const, duration: 0.6, bounce: 0 };
 
 const WhyMobileSection = () => {
   return (
-    <section className="bg-secondary/30 py-16 md:py-24">
+    <section className="bg-background py-24 md:py-32">
       <div className="container">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={transition}
-          className="mb-12 text-center"
+          className="mb-16 max-w-2xl"
         >
-          <h2 className="font-display text-3xl font-bold text-foreground sm:text-4xl">
-            The Mobile Advantage
+          <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-accent">Why Santos</p>
+          <h2 className="font-display text-4xl font-semibold tracking-tight text-foreground text-balance sm:text-5xl">
+            The difference is in what we don't compromise.
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            100% mobile — serving Kelowna, West Kelowna, and Lake Country.
-          </p>
         </motion.div>
 
-        <div className="grid gap-8 md:grid-cols-3">
-          {benefits.map((benefit, i) => (
+        <div className="grid gap-px overflow-hidden rounded-md bg-border md:grid-cols-2">
+          {points.map((p, i) => (
             <motion.div
-              key={benefit.title}
-              initial={{ opacity: 0, y: 20 }}
+              key={p.n}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ ...transition, delay: i * 0.1 }}
-              className="text-center"
+              transition={{ ...transition, delay: i * 0.08 }}
+              className="bg-background p-8 md:p-10"
             >
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-primary/20 bg-primary/10">
-                <benefit.icon className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="font-display text-lg font-semibold text-foreground">{benefit.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{benefit.description}</p>
+              <span className="font-mono text-xs uppercase tracking-[0.25em] text-accent">{p.n}</span>
+              <h3 className="mt-4 font-display text-2xl font-semibold text-foreground">{p.title}</h3>
+              <p className="mt-3 text-muted-foreground">{p.body}</p>
             </motion.div>
           ))}
         </div>

@@ -4,64 +4,62 @@ import { Star } from "lucide-react";
 const testimonials = [
   {
     name: "Michael R.",
-    location: "Kelowna",
-    text: "Santos detailed my Tesla Model Y and the results were incredible. The ceramic coating still beads water perfectly 8 months later.",
+    vehicle: "Tesla Model Y · Kelowna",
+    text: "Eight months later the ceramic still beads like day one. The finish is unreal.",
     rating: 5,
   },
   {
     name: "Sarah L.",
-    location: "West Kelowna",
-    text: "The convenience of mobile detailing is unmatched. They came to my office and my car looked brand new when I left work.",
+    vehicle: "Range Rover Sport · West Kelowna",
+    text: "They came to my office. I left work to a vehicle that looked better than the day I bought it.",
     rating: 5,
   },
   {
     name: "David K.",
-    location: "Lake Country",
-    text: "Best detailing service in the Okanagan. The paint correction on my black BMW was flawless — no more swirl marks.",
+    vehicle: "BMW M4 · Lake Country",
+    text: "Best paint correction I've seen in the Okanagan. No swirls. Mirror finish on black.",
     rating: 5,
   },
 ];
 
-const transition = { type: "spring" as const, duration: 0.5, bounce: 0 };
+const transition = { type: "spring" as const, duration: 0.6, bounce: 0 };
 
 const TestimonialsSection = () => {
   return (
-    <section className="bg-secondary/30 py-16 md:py-24">
+    <section className="bg-background py-24 md:py-32">
       <div className="container">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={transition}
-          className="mb-12 text-center"
+          className="mb-16 max-w-2xl"
         >
-          <h2 className="font-display text-3xl font-bold text-foreground sm:text-4xl">
-            What Our Clients Say
+          <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-accent">Reviews</p>
+          <h2 className="font-display text-4xl font-semibold tracking-tight text-foreground text-balance sm:text-5xl">
+            5.0 ★ across 140+ verified Google reviews.
           </h2>
-          <p className="mt-4 text-muted-foreground">
-            5.0 ★ average across 140+ verified reviews.
-          </p>
         </motion.div>
 
         <div className="grid gap-6 md:grid-cols-3">
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ ...transition, delay: i * 0.1 }}
-              className="rounded-lg border border-border bg-card p-6"
+              transition={{ ...transition, delay: i * 0.08 }}
+              className="rounded-md border border-border bg-card p-8"
             >
-              <div className="mb-3 flex gap-0.5">
+              <div className="mb-5 flex gap-0.5">
                 {Array.from({ length: t.rating }).map((_, j) => (
                   <Star key={j} className="h-4 w-4 fill-accent text-accent" />
                 ))}
               </div>
-              <p className="text-sm text-foreground leading-relaxed">"{t.text}"</p>
-              <div className="mt-4 flex items-center gap-2">
-                <span className="font-display text-sm font-semibold text-foreground">{t.name}</span>
-                <span className="font-mono text-xs text-muted-foreground">· {t.location}</span>
+              <p className="font-display text-lg leading-relaxed text-foreground">"{t.text}"</p>
+              <div className="mt-6 border-t border-border pt-4">
+                <p className="font-display text-sm font-semibold text-foreground">{t.name}</p>
+                <p className="font-mono text-xs text-muted-foreground">{t.vehicle}</p>
               </div>
             </motion.div>
           ))}
