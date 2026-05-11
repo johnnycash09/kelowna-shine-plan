@@ -6,46 +6,48 @@
 
 @layer base {
   :root {
-    --background: 220 15% 5%;
+    --background: 0 0% 4%;
     --foreground: 0 0% 98%;
 
-    --card: 215 15% 8%;
+    --card: 0 0% 7%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 215 15% 8%;
+    --popover: 0 0% 7%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 200 100% 50%;
-    --primary-foreground: 220 15% 5%;
+    --primary: 0 0% 96%;
+    --primary-foreground: 0 0% 6%;
 
-    --secondary: 215 15% 15%;
+    --secondary: 0 0% 11%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 215 15% 12%;
-    --muted-foreground: 215 10% 55%;
+    --muted: 0 0% 9%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 45 100% 50%;
-    --accent-foreground: 220 15% 5%;
+    --accent: 38 35% 70%;
+    --accent-foreground: 0 0% 6%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 215 15% 20%;
-    --input: 215 15% 20%;
-    --ring: 200 100% 50%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 38 35% 70%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
-    --sidebar-background: 215 15% 8%;
+    --sidebar-background: 0 0% 7%;
     --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 200 100% 50%;
-    --sidebar-primary-foreground: 220 15% 5%;
-    --sidebar-accent: 215 15% 15%;
+    --sidebar-primary: 0 0% 96%;
+    --sidebar-primary-foreground: 0 0% 6%;
+    --sidebar-accent: 0 0% 11%;
     --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 215 15% 20%;
-    --sidebar-ring: 200 100% 50%;
+    --sidebar-border: 0 0% 16%;
+    --sidebar-ring: 38 35% 70%;
 
-    --shadow-elegant: 0 20px 40px -15px rgba(0,0,0,0.3);
+    --shadow-elegant: 0 30px 60px -20px rgba(0,0,0,0.6);
+    --gradient-radial: radial-gradient(ellipse at center, hsl(0 0% 10%) 0%, hsl(0 0% 4%) 70%);
+    --gradient-platinum: linear-gradient(135deg, hsl(38 35% 80%), hsl(38 25% 60%));
     --font-display: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
@@ -81,7 +83,13 @@
   }
   .text-gradient-primary {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(200, 80%, 70%));
+    background-image: linear-gradient(135deg, hsl(38 40% 85%), hsl(38 25% 55%));
+  }
+  .bg-gradient-radial {
+    background-image: var(--gradient-radial);
+  }
+  .text-balance {
+    text-wrap: balance;
   }
   .shadow-elegant {
     box-shadow: var(--shadow-elegant);
