@@ -126,6 +126,7 @@ const AdminDashboard = () => {
           <TabsList>
             <TabsTrigger value="bookings">Bookings ({bookings.length})</TabsTrigger>
             <TabsTrigger value="quotes">Quote requests ({quotes.length})</TabsTrigger>
+            <TabsTrigger value="subs">Subscriptions ({subs.length})</TabsTrigger>
           </TabsList>
 
           <TabsContent value="bookings" className="mt-6">
@@ -199,6 +200,33 @@ const AdminDashboard = () => {
                     </tr>
                   ))}
                   {filteredQuotes.length === 0 && <tr><td colSpan={5} className="p-8 text-center text-muted-foreground">No quote requests yet.</td></tr>}
+                </tbody>
+              </table>
+            </div>
+          </TabsContent>
+          <TabsContent value="subs" className="mt-6">
+            <div className="rounded-lg border border-border overflow-hidden">
+              <table className="w-full text-sm">
+                <thead className="bg-card text-xs uppercase text-muted-foreground">
+                  <tr>
+                    <th className="text-left p-3">Started</th>
+                    <th className="text-left p-3">Customer</th>
+                    <th className="text-left p-3">Plan</th>
+                    <th className="text-left p-3">Renews</th>
+                    <th className="text-left p-3">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {subs.map((s) => (
+                    <tr key={s.id} className="border-t border-border">
+                      <td className="p-3">{new Date(s.created_at).toLocaleDateString()}</td>
+                      <td className="p-3">{s.customer_name || "—"}<div className="text-xs text-muted-foreground">{s.customer_email}</div></td>
+                      <td className="p-3 font-mono text-xs">{s.price_id}</td>
+                      <td className="p-3">{s.current_period_end ? new Date(s.current_period_end).toLocaleDateString() : "—"}</td>
+                      <td className="p-3"><Badge variant={s.status === "active" || s.status === "trialing" ? "default" : "outline"}>{s.cancel_at_period_end ? "Cancels at period end" : s.status}</Badge></td>
+                    </tr>
+                  ))}
+                  {subs.length === 0 && <tr><td colSpan={5} className="p-8 text-center text-muted-foreground">No active subscriptions yet.</td></tr>}
                 </tbody>
               </table>
             </div>
