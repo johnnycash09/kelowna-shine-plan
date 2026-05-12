@@ -4,7 +4,7 @@ import { Check } from "lucide-react";
 const packages = [
   {
     name: "Signature",
-    price: "$249",
+    price: "$305",
     tagline: "The essential reset.",
     duration: "≈ 3–4 hrs",
     features: [
