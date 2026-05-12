@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Phone, MessageSquare } from "lucide-react";
-import ceramicImg from "@/assets/service-ceramic.jpg";
+import ceramicImg from "@/assets/cta-background.jpg";
 import { PHONE, PHONE_DISPLAY } from "@/lib/seo";
 
 const transition = { type: "spring" as const, duration: 0.7, bounce: 0 };
