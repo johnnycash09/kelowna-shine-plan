@@ -32,7 +32,7 @@ Deno.serve(async (req) => {
       mode: isRecurring ? "subscription" : "payment",
       ui_mode: "embedded",
       return_url: returnUrl,
-      automatic_tax: { enabled: true },
+      ...(Deno.env.get("ENABLE_AUTOMATIC_TAX") === "true" ? { automatic_tax: { enabled: true } } : {}),
       ...(customerEmail && { customer_email: customerEmail }),
       ...(isRecurring && { customer_creation: undefined }), // subscription always creates
       metadata: {
