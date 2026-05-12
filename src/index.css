@@ -47,7 +47,7 @@
 
     --shadow-elegant: 0 30px 60px -20px rgba(0,0,0,0.6);
     --gradient-radial: radial-gradient(ellipse at center, hsl(0 0% 10%) 0%, hsl(0 0% 4%) 70%);
-    --gradient-platinum: linear-gradient(135deg, hsl(38 35% 80%), hsl(38 25% 60%));
+    --gradient-platinum: linear-gradient(135deg, hsl(36 50% 62%), hsl(36 45% 42%));
     --font-display: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
