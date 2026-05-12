@@ -1,1 +1,16 @@
 project_id = "oviqiutnujtvnzmyzmdx"
+
+[functions.create-deposit-checkout]
+verify_jwt = false
+
+[functions.verify-deposit]
+verify_jwt = false
+
+[functions.create-checkout]
+verify_jwt = false
+
+[functions.payments-webhook]
+verify_jwt = false
+
+[functions.refund-deposit]
+verify_jwt = false

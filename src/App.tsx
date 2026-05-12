@@ -21,6 +21,9 @@ import BookingSuccess from "./pages/BookingSuccess.tsx";
 import QuoteSuccess from "./pages/QuoteSuccess.tsx";
 import AdminAuth from "./pages/admin/AdminAuth.tsx";
 import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
+import MaintenancePlan from "./pages/MaintenancePlan.tsx";
+import Checkout from "./pages/Checkout.tsx";
+import CheckoutReturn from "./pages/CheckoutReturn.tsx";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +50,9 @@ const App = () => (
             <Route path="/book/quote" element={<CustomQuote />} />
             <Route path="/book/success" element={<BookingSuccess />} />
             <Route path="/book/quote/success" element={<QuoteSuccess />} />
+            <Route path="/maintenance" element={<MaintenancePlan />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/checkout/return" element={<CheckoutReturn />} />
             <Route path="/admin" element={<AdminAuth />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

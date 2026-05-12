@@ -10,12 +10,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { getStripeEnvironment } from "@/lib/stripe";
 
 const BOOKING_STATUSES = ["New Booking","Deposit Paid","Pending Confirmation","Confirmed","Completed","Cancelled"] as const;
 const QUOTE_STATUSES = ["New Request","Needs Review","Quote Sent","Accepted","Declined","Completed"] as const;
 
 type Booking = any;
 type Quote = any;
+type Subscription = any;
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -23,11 +25,13 @@ const AdminDashboard = () => {
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [quotes, setQuotes] = useState<Quote[]>([]);
+  const [subs, setSubs] = useState<Subscription[]>([]);
   const [bFilter, setBFilter] = useState<string>("all");
   const [qFilter, setQFilter] = useState<string>("all");
   const [openBooking, setOpenBooking] = useState<Booking | null>(null);
   const [openQuote, setOpenQuote] = useState<Quote | null>(null);
   const [openAddons, setOpenAddons] = useState<any[]>([]);
+  const [refunding, setRefunding] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -43,11 +47,25 @@ const AdminDashboard = () => {
   }, [navigate]);
 
   const loadAll = async () => {
-    const [{ data: b }, { data: q }] = await Promise.all([
+    const [{ data: b }, { data: q }, { data: s }] = await Promise.all([
       supabase.from("bookings").select("*").order("created_at", { ascending: false }),
       supabase.from("quote_requests").select("*").order("created_at", { ascending: false }),
+      supabase.from("subscriptions").select("*").order("created_at", { ascending: false }),
     ]);
-    setBookings(b ?? []); setQuotes(q ?? []);
+    setBookings(b ?? []); setQuotes(q ?? []); setSubs(s ?? []);
+  };
+
+  const refundBooking = async (bookingId: string) => {
+    if (!confirm("Refund this customer's deposit and cancel the booking? This frees the slot.")) return;
+    setRefunding(true);
+    const { data, error } = await supabase.functions.invoke("refund-deposit", {
+      body: { bookingId, environment: getStripeEnvironment() },
+    });
+    setRefunding(false);
+    if (error || !data?.refunded) return toast.error(error?.message || data?.error || "Refund failed");
+    toast.success("Refund processed and slot freed.");
+    await loadAll();
+    setOpenBooking((prev) => prev ? { ...prev, status: "Cancelled" } : prev);
   };
 
   const openBookingDetail = async (b: Booking) => {
@@ -108,6 +126,7 @@ const AdminDashboard = () => {
           <TabsList>
             <TabsTrigger value="bookings">Bookings ({bookings.length})</TabsTrigger>
             <TabsTrigger value="quotes">Quote requests ({quotes.length})</TabsTrigger>
+            <TabsTrigger value="subs">Subscriptions ({subs.length})</TabsTrigger>
           </TabsList>
 
           <TabsContent value="bookings" className="mt-6">
@@ -185,6 +204,33 @@ const AdminDashboard = () => {
               </table>
             </div>
           </TabsContent>
+          <TabsContent value="subs" className="mt-6">
+            <div className="rounded-lg border border-border overflow-hidden">
+              <table className="w-full text-sm">
+                <thead className="bg-card text-xs uppercase text-muted-foreground">
+                  <tr>
+                    <th className="text-left p-3">Started</th>
+                    <th className="text-left p-3">Customer</th>
+                    <th className="text-left p-3">Plan</th>
+                    <th className="text-left p-3">Renews</th>
+                    <th className="text-left p-3">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {subs.map((s) => (
+                    <tr key={s.id} className="border-t border-border">
+                      <td className="p-3">{new Date(s.created_at).toLocaleDateString()}</td>
+                      <td className="p-3">{s.customer_name || "—"}<div className="text-xs text-muted-foreground">{s.customer_email}</div></td>
+                      <td className="p-3 font-mono text-xs">{s.price_id}</td>
+                      <td className="p-3">{s.current_period_end ? new Date(s.current_period_end).toLocaleDateString() : "—"}</td>
+                      <td className="p-3"><Badge variant={s.status === "active" || s.status === "trialing" ? "default" : "outline"}>{s.cancel_at_period_end ? "Cancels at period end" : s.status}</Badge></td>
+                    </tr>
+                  ))}
+                  {subs.length === 0 && <tr><td colSpan={5} className="p-8 text-center text-muted-foreground">No active subscriptions yet.</td></tr>}
+                </tbody>
+              </table>
+            </div>
+          </TabsContent>
         </Tabs>
       </main>
 
@@ -231,6 +277,15 @@ const AdminDashboard = () => {
                   <Textarea defaultValue={openBooking.internal_notes ?? ""}
                     onBlur={(e) => updateBooking(openBooking.id, { internal_notes: e.target.value })} />
                 </Section>
+                {openBooking.status === "Deposit Paid" && (
+                  <Section title="Refund">
+                    <Button variant="destructive" size="sm" disabled={refunding}
+                      onClick={() => refundBooking(openBooking.id)}>
+                      {refunding ? "Processing…" : `Refund $${openBooking.deposit_amount} deposit & cancel`}
+                    </Button>
+                    <p className="text-xs text-muted-foreground mt-2">Frees the time slot and marks the booking Cancelled.</p>
+                  </Section>
+                )}
               </div>
             </>
           )}

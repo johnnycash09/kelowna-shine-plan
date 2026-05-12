@@ -1,24 +1,17 @@
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
-import Stripe from "https://esm.sh/stripe@14.21.0?target=deno";
-
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-};
+import { corsHeaders, createStripeClient, type StripeEnv } from "../_shared/stripe.ts";
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
   try {
-    const { session_id } = await req.json();
+    const { session_id, environment } = await req.json();
     if (!session_id) {
       return new Response(JSON.stringify({ error: "session_id required" }), {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
-
-    const stripeKey = Deno.env.get("STRIPE_SANDBOX_API_KEY") || Deno.env.get("STRIPE_API_KEY");
-    const stripe = new Stripe(stripeKey!, { apiVersion: "2024-06-20" });
+    const env: StripeEnv = environment === "live" ? "live" : "sandbox";
+    const stripe = createStripeClient(env);
     const session = await stripe.checkout.sessions.retrieve(session_id);
 
     const supabase = createClient(
@@ -30,12 +23,13 @@ Deno.serve(async (req) => {
     const paid = session.payment_status === "paid";
 
     if (paid && bookingId) {
+      // Mark booking deposit paid
       await supabase.from("bookings")
         .update({ status: "Deposit Paid" })
         .eq("id", bookingId)
         .eq("status", "New Booking");
 
-      // Idempotent insert
+      // Idempotent payment row
       const { data: existing } = await supabase.from("payments")
         .select("id").eq("stripe_session_id", session.id).maybeSingle();
       if (!existing) {
@@ -49,12 +43,23 @@ Deno.serve(async (req) => {
           raw: session as unknown as Record<string, unknown>,
         });
       }
+
+      // Block the slot for this booking
+      const { data: booking } = await supabase.from("bookings")
+        .select("preferred_date, time_window, first_name, last_name")
+        .eq("id", bookingId).maybeSingle();
+      if (booking?.preferred_date && booking.time_window) {
+        await supabase.from("blocked_slots").upsert({
+          booking_id: bookingId,
+          slot_date: booking.preferred_date,
+          time_window: booking.time_window,
+          reason: `${booking.first_name} ${booking.last_name}`,
+        }, { onConflict: "slot_date,time_window" });
+      }
     }
 
     return new Response(JSON.stringify({
-      paid,
-      booking_id: bookingId,
-      payment_status: session.payment_status,
+      paid, booking_id: bookingId, payment_status: session.payment_status,
     }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
   } catch (e) {
     console.error("verify-deposit error", e);

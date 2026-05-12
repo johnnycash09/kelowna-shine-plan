@@ -14,6 +14,41 @@ export type Database = {
   }
   public: {
     Tables: {
+      blocked_slots: {
+        Row: {
+          booking_id: string | null
+          created_at: string
+          id: string
+          reason: string | null
+          slot_date: string
+          time_window: string
+        }
+        Insert: {
+          booking_id?: string | null
+          created_at?: string
+          id?: string
+          reason?: string | null
+          slot_date: string
+          time_window: string
+        }
+        Update: {
+          booking_id?: string | null
+          created_at?: string
+          id?: string
+          reason?: string | null
+          slot_date?: string
+          time_window?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "blocked_slots_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       booking_addons: {
         Row: {
           addon_key: string
@@ -243,6 +278,60 @@ export type Database = {
           vehicle_make?: string | null
           vehicle_model?: string | null
           vehicle_year?: string | null
+        }
+        Relationships: []
+      }
+      subscriptions: {
+        Row: {
+          cancel_at_period_end: boolean | null
+          created_at: string
+          current_period_end: string | null
+          current_period_start: string | null
+          customer_email: string
+          customer_name: string | null
+          environment: string
+          id: string
+          price_id: string
+          product_id: string
+          status: string
+          stripe_customer_id: string
+          stripe_subscription_id: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          cancel_at_period_end?: boolean | null
+          created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          customer_email: string
+          customer_name?: string | null
+          environment?: string
+          id?: string
+          price_id: string
+          product_id: string
+          status?: string
+          stripe_customer_id: string
+          stripe_subscription_id: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          cancel_at_period_end?: boolean | null
+          created_at?: string
+          current_period_end?: string | null
+          current_period_start?: string | null
+          customer_email?: string
+          customer_name?: string | null
+          environment?: string
+          id?: string
+          price_id?: string
+          product_id?: string
+          status?: string
+          stripe_customer_id?: string
+          stripe_subscription_id?: string
+          updated_at?: string
+          user_id?: string | null
         }
         Relationships: []
       }

@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import { Button } from "@/components/ui/button";
 import { PACKAGES } from "@/lib/booking-config";
+import { PACKAGE_PRICE_IDS } from "@/lib/checkout-products";
 
 const BookNow = () => {
   return (
@@ -86,9 +87,12 @@ const BookNow = () => {
                     ))}
                   </ul>
                   <Link to={`/book/instant/${pkg.slug}`}>
-                    <Button className="w-full">Book Now</Button>
+                    <Button className="w-full">Book with ${pkg.deposit} deposit</Button>
                   </Link>
-                  <p className="text-xs text-muted-foreground text-center mt-3">${pkg.deposit} deposit reserves your spot</p>
+                  <Link to={`/checkout?price=${PACKAGE_PRICE_IDS[pkg.slug]}&label=${encodeURIComponent(pkg.name + " — $" + pkg.basePrice)}`}>
+                    <Button className="w-full mt-2" variant="outline">Pay full ${pkg.basePrice}</Button>
+                  </Link>
+                  <p className="text-xs text-muted-foreground text-center mt-3">Sedan-size base price. Taxes calculated at checkout.</p>
                 </div>
               ))}
             </div>
@@ -98,6 +102,20 @@ const BookNow = () => {
               <Link to="/book/quote" className="text-accent underline underline-offset-4">Choose custom quote</Link>{" "}
               and we'll recommend the right package.
             </p>
+          </div>
+
+          {/* Maintenance plan upsell */}
+          <div className="mt-20 max-w-5xl mx-auto rounded-lg border border-accent/40 bg-card p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+            <div className="flex-1">
+              <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-2">New — Subscribe & save</p>
+              <h3 className="font-display text-2xl font-semibold mb-2">Santos Maintenance Plan — $199 / month</h3>
+              <p className="text-sm text-muted-foreground">Monthly full detail + 10% off any one-time service. Cancel anytime.</p>
+            </div>
+            <Link to="/maintenance">
+              <Button size="lg" variant="outline" className="border-accent text-accent hover:bg-accent hover:text-accent-foreground">
+                Learn more <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </div>
         </section>
       </main>
