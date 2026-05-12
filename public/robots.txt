@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://kelowna-shine-plan.lovable.app/sitemap.xml

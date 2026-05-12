@@ -11,71 +11,62 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import FooterSection from "@/components/FooterSection";
+import ServiceAreasSection from "@/components/ServiceAreasSection";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
+import { localBusinessSchema, faqSchema, SITE_URL } from "@/lib/seo";
 
-const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "Santos Auto Detailing",
-  description:
-    "Premium mobile auto detailing, ceramic coating, and paint correction for luxury vehicles in Kelowna, BC.",
-  url: "https://santosautodetailing.ca",
-  telephone: "+12508627491",
-  email: "pay@santosautodetailing.ca",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Kelowna",
-    addressRegion: "BC",
-    addressCountry: "CA",
-  },
-  areaServed: [
-    { "@type": "City", name: "Kelowna" },
-    { "@type": "City", name: "West Kelowna" },
-    { "@type": "City", name: "Lake Country" },
-    { "@type": "City", name: "Peachland" },
-  ],
-  priceRange: "$$$",
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5.0",
-    reviewCount: "140",
-  },
-};
+const HOMEPAGE_FAQS = [
+  { q: "Do you offer mobile detailing in Kelowna?", a: "Yes — our fully equipped mobile unit comes to your home, office or job site anywhere in Kelowna and the Central Okanagan, with filtered water and self-contained power." },
+  { q: "What areas do you serve?", a: "Kelowna, West Kelowna, Lake Country, Vernon, Penticton, Summerland, Lower Mission, Peachland and the surrounding Okanagan." },
+  { q: "Do you provide ceramic coating in-shop?", a: "Yes. Ceramic coating installation is performed in a controlled in-shop environment to ensure proper cure and a flawless finish." },
+  { q: "What is paint correction?", a: "Paint correction is a multi-stage machine polishing process that removes swirl marks, oxidation and light defects from your clear coat — restoring true gloss and depth." },
+  { q: "How long does ceramic coating last?", a: "Professional ceramic coatings typically last 2–7+ years depending on the system and care. We recommend the right tier based on your vehicle and use." },
+  { q: "Do you detail boats and aircraft?", a: "Yes. We offer marine detailing for boats and watercraft on Okanagan Lake, plus discreet aircraft and private jet detailing programs." },
+  { q: "Do you offer same-day service?", a: "Same-day appointments are sometimes available based on schedule. Call or text us and we'll confirm availability quickly." },
+  { q: "Are you insured?", a: "Yes — Santos Auto Detailing is fully insured for mobile, in-shop, fleet and marine work." },
+  { q: "Do you provide pickup and drop-off?", a: "Yes. Pickup and drop-off is available within our service area for ceramic coating, paint correction and other in-shop services." },
+  { q: "What's the difference between professional ceramic coating and a spray ceramic?", a: "Professional ceramic coatings are SiO2-based systems that bond to your clear coat for years of protection. Spray ceramics are short-term toppers — useful for maintenance, but not a substitute for a real coating system." },
+];
 
 const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Santos Auto Detailing | Premium Mobile Detailing & Ceramic Coating Kelowna</title>
+        <title>Santos Auto Detailing | Mobile Detailing, Ceramic Coating & Paint Correction in Kelowna</title>
         <meta
           name="description"
-          content="Kelowna's automotive surface studio. Premium mobile detailing, paint correction, and 7-year ceramic coating for luxury vehicles. 5.0★ rated. We come to you."
+          content="Santos Auto Detailing offers premium mobile detailing, interior cleaning, ceramic coating, paint correction, boat detailing, aircraft detailing, and fleet services in Kelowna and the Okanagan."
         />
-        <link rel="canonical" href="https://santosautodetailing.ca" />
+        <link rel="canonical" href={SITE_URL} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="Santos Auto Detailing — Kelowna's Automotive Surface Studio" />
-        <meta property="og:description" content="Premium mobile detailing for vehicles that deserve more." />
+        <meta property="og:title" content="Santos Auto Detailing | Premium Mobile Detailing in Kelowna" />
+        <meta property="og:description" content="Premium mobile detailing, ceramic coating and paint correction in Kelowna and the Okanagan." />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content={SITE_URL} />
         <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqSchema(HOMEPAGE_FAQS))}</script>
       </Helmet>
 
       <Navbar />
-      <main>
+      <main className="pb-16 md:pb-0">
         <HeroSection />
         <TrustStrip />
         <BeforeAfterSlider />
         <ServicesGrid />
         <PackagesSection />
         <WhyMobileSection />
+        <ServiceAreasSection />
         <div id="process">
           <ProcessSection />
         </div>
         <div id="reviews">
           <TestimonialsSection />
         </div>
-        <FAQSection />
+        <FAQSection faqs={HOMEPAGE_FAQS} />
         <FinalCTASection />
       </main>
       <FooterSection />
+      <StickyMobileCTA />
     </>
   );
 };
