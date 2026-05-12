@@ -101,12 +101,14 @@ export type Database = {
           notes: string | null
           package_name: string
           package_slug: string
+          payment_type: string
           phone: string
           preferred_date: string | null
           service_mode: string | null
           size_modifier: number
           status: Database["public"]["Enums"]["booking_status"]
           stripe_session_id: string | null
+          subscription_id: string | null
           time_window: string | null
           updated_at: string
           vehicle_make: string | null
@@ -130,12 +132,14 @@ export type Database = {
           notes?: string | null
           package_name: string
           package_slug: string
+          payment_type?: string
           phone: string
           preferred_date?: string | null
           service_mode?: string | null
           size_modifier?: number
           status?: Database["public"]["Enums"]["booking_status"]
           stripe_session_id?: string | null
+          subscription_id?: string | null
           time_window?: string | null
           updated_at?: string
           vehicle_make?: string | null
@@ -159,12 +163,14 @@ export type Database = {
           notes?: string | null
           package_name?: string
           package_slug?: string
+          payment_type?: string
           phone?: string
           preferred_date?: string | null
           service_mode?: string | null
           size_modifier?: number
           status?: Database["public"]["Enums"]["booking_status"]
           stripe_session_id?: string | null
+          subscription_id?: string | null
           time_window?: string | null
           updated_at?: string
           vehicle_make?: string | null
