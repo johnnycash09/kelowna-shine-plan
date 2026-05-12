@@ -310,9 +310,30 @@ const InstantBooking = () => {
                 ))}
                 <div className="border-t border-border my-3" />
                 <Row k="Estimated total" v={`$${total}`} bold />
-                <Row k="Deposit due now" v={`$${pkg.deposit}`} bold accent />
-                <p className="text-xs text-muted-foreground mt-3">Deposit is applied to your final total.</p>
+                <Row k={paymentType === "full" ? "Charged today (full)" : "Deposit due now"} v={`$${paymentType === "full" ? total : pkg.deposit}`} bold accent />
+                <p className="text-xs text-muted-foreground mt-3">
+                  {paymentType === "full" ? "Tax added at checkout. No further payment on the day of service." : "Deposit is applied to your final total. Tax added at checkout."}
+                </p>
               </div>
+
+              <div className="rounded-lg border border-border bg-card p-6">
+                <h3 className="font-display text-lg mb-3">How would you like to pay?</h3>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  <button onClick={() => setPaymentType("deposit")}
+                    className={cn("rounded-lg border bg-background p-4 text-left transition",
+                      paymentType === "deposit" ? "border-accent" : "border-border hover:border-muted-foreground")}>
+                    <div className="font-display">Pay deposit</div>
+                    <div className="text-xs text-muted-foreground mt-1">Pay ${pkg.deposit} now, balance on completion.</div>
+                  </button>
+                  <button onClick={() => setPaymentType("full")}
+                    className={cn("rounded-lg border bg-background p-4 text-left transition",
+                      paymentType === "full" ? "border-accent" : "border-border hover:border-muted-foreground")}>
+                    <div className="font-display">Pay in full</div>
+                    <div className="text-xs text-muted-foreground mt-1">Pay ${total} now. Done — nothing on the day.</div>
+                  </button>
+                </div>
+              </div>
+
               <div className="rounded-lg border border-border bg-card p-6">
                 <h3 className="font-display text-lg mb-3">Appointment</h3>
                 <p className="text-sm">{date && format(date, "PPP")} · {timeWindow}</p>
@@ -321,7 +342,7 @@ const InstantBooking = () => {
               </div>
               <Button onClick={submit} disabled={submitting} size="lg" className="w-full">
                 {submitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Creating checkout…</>
-                  : `Pay $${pkg.deposit} deposit & reserve →`}
+                  : paymentType === "full" ? `Pay $${total} & confirm →` : `Pay $${pkg.deposit} deposit & reserve →`}
               </Button>
               <p className="text-xs text-muted-foreground text-center">Secure payment by Stripe. You'll get a confirmation email.</p>
             </div>
