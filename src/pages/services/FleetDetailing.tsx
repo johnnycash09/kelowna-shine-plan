@@ -1,5 +1,5 @@
 import ServicePageLayout from "@/components/ServicePageLayout";
-import img from "@/assets/service-exterior.jpg";
+import img from "@/assets/service-fleet.jpg";
 
 const FleetDetailing = () => (
   <ServicePageLayout
