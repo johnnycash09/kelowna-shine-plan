@@ -114,6 +114,7 @@ const InstantBooking = () => {
           deposit_amount: pkg.deposit,
           addons: selectedAddons,
           origin: window.location.origin,
+          environment: (import.meta.env.VITE_PAYMENTS_CLIENT_TOKEN as string | undefined)?.startsWith("pk_test_") ? "sandbox" : "live",
         },
       });
       if (error) throw error;
