@@ -14,3 +14,12 @@ verify_jwt = false
 
 [functions.refund-deposit]
 verify_jwt = false
+
+[functions.send-notification]
+verify_jwt = false
+
+[functions.create-portal-session]
+verify_jwt = false
+
+[functions.cancel-subscription]
+verify_jwt = false
