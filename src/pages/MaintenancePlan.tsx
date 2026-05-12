@@ -1,12 +1,29 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { Check, Sparkles, ArrowRight, Calendar, Percent, ShieldCheck } from "lucide-react";
+import { Check, Sparkles, ArrowRight, Calendar, Percent, ShieldCheck, Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { getStripeEnvironment } from "@/lib/stripe";
 import { MAINTENANCE_PRICE_ID, MAINTENANCE_PRICE } from "@/lib/checkout-products";
 
 const MaintenancePlan = () => {
+  const [manageEmail, setManageEmail] = useState("");
+  const [opening, setOpening] = useState(false);
+  const openPortal = async () => {
+    if (!/\S+@\S+\.\S+/.test(manageEmail)) return toast.error("Enter the email you subscribed with.");
+    setOpening(true);
+    const { data, error } = await supabase.functions.invoke("create-portal-session", {
+      body: { email: manageEmail, returnUrl: window.location.origin + "/maintenance", environment: getStripeEnvironment() },
+    });
+    setOpening(false);
+    if (error || !data?.url) return toast.error(error?.message || data?.error || "Could not open portal.");
+    window.open(data.url, "_blank");
+  };
   return (
     <div className="min-h-screen bg-background">
       <Helmet>

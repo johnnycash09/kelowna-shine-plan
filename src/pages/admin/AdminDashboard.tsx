@@ -214,6 +214,7 @@ const AdminDashboard = () => {
                     <th className="text-left p-3">Plan</th>
                     <th className="text-left p-3">Renews</th>
                     <th className="text-left p-3">Status</th>
+                    <th className="text-left p-3"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -224,9 +225,22 @@ const AdminDashboard = () => {
                       <td className="p-3 font-mono text-xs">{s.price_id}</td>
                       <td className="p-3">{s.current_period_end ? new Date(s.current_period_end).toLocaleDateString() : "—"}</td>
                       <td className="p-3"><Badge variant={s.status === "active" || s.status === "trialing" ? "default" : "outline"}>{s.cancel_at_period_end ? "Cancels at period end" : s.status}</Badge></td>
+                      <td className="p-3 text-right">
+                        {(s.status === "active" || s.status === "trialing") && !s.cancel_at_period_end && (
+                          <Button size="sm" variant="outline" onClick={async () => {
+                            if (!confirm("Cancel this subscription at the end of the current period?")) return;
+                            const { data, error } = await supabase.functions.invoke("cancel-subscription", {
+                              body: { subscriptionId: s.stripe_subscription_id, environment: getStripeEnvironment() },
+                            });
+                            if (error || !data?.canceled) return toast.error(error?.message || data?.error || "Failed");
+                            toast.success("Will cancel at period end.");
+                            await loadAll();
+                          }}>Cancel at period end</Button>
+                        )}
+                      </td>
                     </tr>
                   ))}
-                  {subs.length === 0 && <tr><td colSpan={5} className="p-8 text-center text-muted-foreground">No active subscriptions yet.</td></tr>}
+                  {subs.length === 0 && <tr><td colSpan={6} className="p-8 text-center text-muted-foreground">No active subscriptions yet.</td></tr>}
                 </tbody>
               </table>
             </div>

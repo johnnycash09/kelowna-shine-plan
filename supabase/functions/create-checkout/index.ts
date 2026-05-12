@@ -1,4 +1,4 @@
-// Embedded checkout for full-price packages + maintenance subscription
+// Embedded checkout for subscription (maintenance plan).
 import { corsHeaders, createStripeClient, type StripeEnv } from "../_shared/stripe.ts";
 
 Deno.serve(async (req) => {
@@ -32,7 +32,9 @@ Deno.serve(async (req) => {
       mode: isRecurring ? "subscription" : "payment",
       ui_mode: "embedded",
       return_url: returnUrl,
+      automatic_tax: { enabled: true },
       ...(customerEmail && { customer_email: customerEmail }),
+      ...(isRecurring && { customer_creation: undefined }), // subscription always creates
       metadata: {
         priceId, type: isRecurring ? "subscription" : "full_payment",
         ...(customerName && { customer_name: customerName }),

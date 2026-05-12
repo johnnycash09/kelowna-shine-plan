@@ -89,7 +89,7 @@ const BookNow = () => {
                   <Link to={`/book/instant/${pkg.slug}`}>
                     <Button className="w-full">Book with ${pkg.deposit} deposit</Button>
                   </Link>
-                  <Link to={`/checkout?price=${PACKAGE_PRICE_IDS[pkg.slug]}&label=${encodeURIComponent(pkg.name + " — $" + pkg.basePrice)}`}>
+                  <Link to={`/book/instant/${pkg.slug}?pay=full`}>
                     <Button className="w-full mt-2" variant="outline">Pay full ${pkg.basePrice}</Button>
                   </Link>
                   <p className="text-xs text-muted-foreground text-center mt-3">Sedan-size base price. Taxes calculated at checkout.</p>

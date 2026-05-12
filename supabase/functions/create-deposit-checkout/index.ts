@@ -1,3 +1,4 @@
+// Booking checkout — supports payment_type 'deposit' or 'full'.
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 import { corsHeaders, createStripeClient, type StripeEnv } from "../_shared/stripe.ts";
 
@@ -11,7 +12,9 @@ interface BookingInput {
   address?: string; notes?: string;
   preferred_date?: string; time_window?: string; service_mode?: string;
   estimated_total: number; deposit_amount: number;
-  addons: AddonInput[]; origin: string; environment?: StripeEnv;
+  addons: AddonInput[]; origin: string;
+  payment_type?: "deposit" | "full";
+  environment?: StripeEnv;
 }
 
 Deno.serve(async (req) => {
@@ -26,8 +29,10 @@ Deno.serve(async (req) => {
         });
       }
     }
-    if (!body.deposit_amount || body.deposit_amount < 50) {
-      return new Response(JSON.stringify({ error: "Invalid deposit" }), {
+    const paymentType = body.payment_type === "full" ? "full" : "deposit";
+    const chargeAmount = paymentType === "full" ? body.estimated_total : body.deposit_amount;
+    if (!chargeAmount || chargeAmount < 50) {
+      return new Response(JSON.stringify({ error: "Invalid amount" }), {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
@@ -62,6 +67,7 @@ Deno.serve(async (req) => {
         preferred_date: body.preferred_date || null,
         time_window: body.time_window, service_mode: body.service_mode,
         estimated_total: body.estimated_total, deposit_amount: body.deposit_amount,
+        payment_type: paymentType,
         status: "New Booking",
       }).select().single();
     if (bookingErr) throw bookingErr;
@@ -75,23 +81,32 @@ Deno.serve(async (req) => {
     }
 
     const stripe = createStripeClient(env);
+    const productLabel = paymentType === "full"
+      ? `Santos Detail — ${body.package_name} (paid in full)`
+      : `Santos Detail Deposit — ${body.package_name}`;
+    const productDesc = paymentType === "full"
+      ? `Full payment for your ${body.package_name} appointment.`
+      : `Reserves your appointment. Applied to final total of $${body.estimated_total}.`;
+
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items: [{
         price_data: {
           currency: "cad",
-          product_data: {
-            name: `Santos Detail Deposit — ${body.package_name}`,
-            description: `Reserves your appointment. Applied to final total of $${body.estimated_total}.`,
-          },
-          unit_amount: body.deposit_amount * 100,
+          product_data: { name: productLabel, description: productDesc, tax_code: "txcd_20030000" },
+          unit_amount: chargeAmount * 100,
+          tax_behavior: "exclusive",
         },
         quantity: 1,
       }],
       customer_email: body.email,
+      automatic_tax: { enabled: true },
       success_url: `${body.origin}/book/success?session_id={CHECKOUT_SESSION_ID}&booking_id=${booking.id}`,
       cancel_url: `${body.origin}/book/instant/${body.package_slug}?cancelled=1`,
-      metadata: { booking_id: booking.id, package: body.package_name, type: "deposit" },
+      metadata: {
+        booking_id: booking.id, package: body.package_name,
+        type: paymentType === "full" ? "full_payment" : "deposit",
+      },
     });
 
     await supabase.from("bookings").update({ stripe_session_id: session.id }).eq("id", booking.id);

@@ -1,3 +1,4 @@
+// Verifies the booking checkout session, marks paid status, blocks slot, sends emails.
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 import { corsHeaders, createStripeClient, type StripeEnv } from "../_shared/stripe.ts";
 
@@ -20,12 +21,13 @@ Deno.serve(async (req) => {
     );
 
     const bookingId = session.metadata?.booking_id;
+    const paymentType = session.metadata?.type === "full_payment" ? "full" : "deposit";
     const paid = session.payment_status === "paid";
 
     if (paid && bookingId) {
-      // Mark booking deposit paid
+      const newStatus = paymentType === "full" ? "Confirmed" : "Deposit Paid";
       await supabase.from("bookings")
-        .update({ status: "Deposit Paid" })
+        .update({ status: newStatus })
         .eq("id", bookingId)
         .eq("status", "New Booking");
 
@@ -44,10 +46,8 @@ Deno.serve(async (req) => {
         });
       }
 
-      // Block the slot for this booking
       const { data: booking } = await supabase.from("bookings")
-        .select("preferred_date, time_window, first_name, last_name")
-        .eq("id", bookingId).maybeSingle();
+        .select("*").eq("id", bookingId).maybeSingle();
       if (booking?.preferred_date && booking.time_window) {
         await supabase.from("blocked_slots").upsert({
           booking_id: bookingId,
@@ -56,10 +56,26 @@ Deno.serve(async (req) => {
           reason: `${booking.first_name} ${booking.last_name}`,
         }, { onConflict: "slot_date,time_window" });
       }
+
+      // Fire emails (best-effort, do not fail the verify if email errors)
+      if (booking) {
+        const paidAmount = (session.amount_total ?? 0) / 100;
+        const fireAndForget = (kind: string, to: string, data: any) =>
+          supabase.functions.invoke("send-notification", { body: { kind, to, data } })
+            .catch((e) => console.error(`email ${kind} failed`, e));
+
+        const customerKind = paymentType === "full" ? "full_paid_customer" : "deposit_paid_customer";
+        await Promise.all([
+          fireAndForget(customerKind, booking.email, booking),
+          fireAndForget("booking_owner", booking.email, {
+            ...booking, payment_type: paymentType, paid_amount: paidAmount,
+          }),
+        ]);
+      }
     }
 
     return new Response(JSON.stringify({
-      paid, booking_id: bookingId, payment_status: session.payment_status,
+      paid, booking_id: bookingId, payment_type: paymentType, payment_status: session.payment_status,
     }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
   } catch (e) {
     console.error("verify-deposit error", e);
