@@ -7,6 +7,7 @@ import exteriorImg from "@/assets/service-exterior.jpg";
 import correctionImg from "@/assets/service-correction.jpg";
 import ceramicImg from "@/assets/service-ceramic.jpg";
 import heroImg from "@/assets/hero-detailing.jpg";
+import aircraftImg from "@/assets/service-aircraft.jpg";
 
 const imageMap: Record<string, string> = {
   "/interior-detailing-kelowna": interiorImg,
@@ -15,7 +16,7 @@ const imageMap: Record<string, string> = {
   "/ceramic-coating-kelowna": ceramicImg,
   "/fleet-detailing-kelowna": exteriorImg,
   "/boat-detailing-kelowna": heroImg,
-  "/aircraft-detailing-kelowna": heroImg,
+  "/aircraft-detailing-kelowna": aircraftImg,
 };
 
 const altMap: Record<string, string> = {
