@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "Quote photos public read" ON storage.objects;
