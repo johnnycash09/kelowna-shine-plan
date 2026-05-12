@@ -19,7 +19,7 @@ const StickyMobileCTA = () => {
         Text
       </a>
       <a
-        href="https://santosautodetailing.ca/booking"
+        href="/book"
         className="flex items-center justify-center gap-2 bg-foreground py-3 font-display text-xs font-semibold text-background"
       >
         <Calendar className="h-4 w-4" />
