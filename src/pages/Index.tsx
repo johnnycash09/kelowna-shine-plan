@@ -19,8 +19,8 @@ const localBusinessSchema = {
   description:
     "Premium mobile auto detailing, ceramic coating, and paint correction for luxury vehicles in Kelowna, BC.",
   url: "https://santosautodetailing.ca",
-  telephone: "+12501234567",
-  email: "info@santosautodetailing.ca",
+  telephone: "+12508627491",
+  email: "pay@santosautodetailing.ca",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Kelowna",

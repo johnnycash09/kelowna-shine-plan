@@ -19,11 +19,11 @@ const FooterSection = () => {
             <ul className="mt-4 space-y-3">
               <li className="flex items-center gap-3 text-sm text-foreground">
                 <Phone className="h-4 w-4 text-primary" />
-                <a href="tel:+12501234567" className="hover:text-primary">(250) 123-4567</a>
+                <a href="tel:+12508627491" className="hover:text-primary">(250) 862-7491</a>
               </li>
               <li className="flex items-center gap-3 text-sm text-foreground">
                 <Mail className="h-4 w-4 text-primary" />
-                <a href="mailto:info@santosautodetailing.ca" className="hover:text-primary">info@santosautodetailing.ca</a>
+                <a href="mailto:pay@santosautodetailing.ca" className="hover:text-primary">pay@santosautodetailing.ca</a>
               </li>
               <li className="flex items-center gap-3 text-sm text-foreground">
                 <MapPin className="h-4 w-4 text-primary" />

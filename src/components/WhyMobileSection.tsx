@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const points = [
   { n: "01", title: "We come to you", body: "Home, office, dealership, marina. Your driveway becomes the studio." },
   { n: "02", title: "Premium products only", body: "Gyeon, CarPro, Rupes. The same systems used on flagship vehicles." },
-  { n: "03", title: "Trusted by high-end clients", body: "Daily-driven Teslas, weekend Porsches, work trucks, RVs and boats." },
+  { n: "03", title: "Trusted by high-end clients", body: "Daily-driven Teslas, weekend Porsches, work trucks, RVs, Aviation and boats." },
   { n: "04", title: "Obsessive attention", body: "We finish every panel, every stitch, every vent — or it isn't done." },
 ];
 
