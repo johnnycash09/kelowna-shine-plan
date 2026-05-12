@@ -103,6 +103,20 @@ const BookNow = () => {
               and we'll recommend the right package.
             </p>
           </div>
+
+          {/* Maintenance plan upsell */}
+          <div className="mt-20 max-w-5xl mx-auto rounded-lg border border-accent/40 bg-card p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+            <div className="flex-1">
+              <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-2">New — Subscribe & save</p>
+              <h3 className="font-display text-2xl font-semibold mb-2">Santos Maintenance Plan — $199 / month</h3>
+              <p className="text-sm text-muted-foreground">Monthly full detail + 10% off any one-time service. Cancel anytime.</p>
+            </div>
+            <Link to="/maintenance">
+              <Button size="lg" variant="outline" className="border-accent text-accent hover:bg-accent hover:text-accent-foreground">
+                Learn more <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+          </div>
         </section>
       </main>
 
