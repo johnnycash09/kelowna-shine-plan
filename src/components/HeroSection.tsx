@@ -11,11 +11,11 @@ const HeroSection = () => {
       <div className="absolute inset-0">
         <img
           src={heroImage}
-          alt="Glossy black Porsche with mirror-finish ceramic coating in Kelowna"
+          alt="Premium vehicle detailing by Santos Auto Detailing in Kelowna"
           className="h-full w-full object-cover opacity-90"
           loading="eager"
-          width={1920}
-          height={1080}
+          width={1440}
+          height={1920}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/30" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/40 to-transparent" />
