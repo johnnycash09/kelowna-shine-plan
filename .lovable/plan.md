@@ -1,100 +1,97 @@
-# Santos Auto Detailing — SEO & Conversion Overhaul Plan
+# Santos Auto Detailing — Booking System Plan
 
-## Goal
-Rank locally for high-intent Kelowna/Okanagan detailing searches and convert visitors into bookings, quotes, calls, and texts. Keep the existing premium dark visual system intact.
+A premium, two-path booking experience: fast instant booking with deposit for standard packages, and a custom quote flow for complex jobs. Backed by Lovable Cloud + Stripe.
 
-## Scope Summary
-- Rewrite homepage SEO (title, description, H1, hero copy, FAQs, CTAs)
-- Add 8 new SEO-optimized pages (7 services + 1 location)
-- Add schema (LocalBusiness on all pages, Service schema per service page, FAQPage on FAQs, BreadcrumbList)
-- Add sticky mobile CTA (Call / Text / Book)
-- Add service-area footer links and internal cross-linking between services
-- Add sitemap + update robots.txt
-- Audit checklist delivered at the end
+## Prerequisites (require user action before I build)
 
-## New Routes
-```
-/                              Home (rewritten)
-/mobile-detailing-kelowna      (alias landing — same as home content focus)
-/interior-detailing-kelowna
-/exterior-detailing-kelowna
-/ceramic-coating-kelowna
-/paint-correction-kelowna
-/fleet-detailing-kelowna
-/boat-detailing-kelowna
-/aircraft-detailing-kelowna
-/auto-detailing-kelowna        Kelowna location page
-```
+1. **Enable Lovable Cloud** — needed for database, auth (admin), storage (quote photos), and edge functions.
+2. **Enable Lovable Payments (Stripe)** — needed for deposit checkout. I'll run the eligibility check and recommend Stripe (auto-detail services, physical service, not Paddle-eligible). Pro plan required.
+3. **Admin account** — after Cloud is on, you'll sign up once with your email; I'll grant the `admin` role via SQL so only you can see the dashboard.
 
-Note: RV detailing will be folded into Fleet/Boat copy and mentioned across pages (no separate page unless requested) to keep scope tight. Tell me if you want a dedicated `/rv-detailing-kelowna` page.
+## Pages & Routes
 
-## Page Structure (each service page)
-Reusable `<ServicePage>` component with:
-1. SEO `<Helmet>` — unique title, meta, canonical, OG, Service + LocalBusiness + Breadcrumb JSON-LD
-2. Hero with H1, subheadline, dual CTA (Book / Quote), trust microcopy
-3. What's included (bullet list from your spec)
-4. Process / why-it-matters (premium tone)
-5. Service-area mention (Kelowna + Okanagan towns)
-6. Cross-links to 3 related services
-7. Mini-FAQ (3–5 Qs) with FAQPage schema
-8. Final CTA band
+- `/book` — Book Now landing. Two big cards: **Instant Booking** and **Get Custom Quote**, plus the 4 package cards.
+- `/book/instant/:packageSlug` — multi-step instant booking wizard (6 steps + progress bar).
+- `/book/quote` — custom quote form.
+- `/book/success?session_id=...` — deposit confirmation page (verifies Stripe session, marks booking Deposit Paid).
+- `/book/quote/success` — quote submitted confirmation.
+- `/admin` — login + dashboard (bookings tab, quotes tab, filters, detail drawer, status changes, internal notes).
 
-## Homepage Changes
-- Title: "Santos Auto Detailing | Mobile Detailing, Ceramic Coating & Paint Correction in Kelowna"
-- Meta: per spec
-- H1: "Premium Mobile Detailing in Kelowna" (replace current stylized H1)
-- Sub: "Luxury mobile and in-shop detailing for vehicles, boats, fleets, RVs, and aircraft across the Okanagan."
-- Update ServicesGrid to include all 8 services as cards linking to new pages
-- New "Service Areas" section listing Kelowna, West Kelowna, Lake Country, Vernon, Penticton, Summerland, Lower Mission, Okanagan
-- Expand FAQ to the 10 Qs from spec; add FAQPage schema
-- Final CTA copy update
+Sticky mobile "Book Now" already exists — point it at `/book`.
 
-## Global Additions
-- `StickyMobileCTA` component (visible <md): Call, Text, Book buttons fixed bottom
-- Phone `tel:+12508627491`, SMS `sms:+12508627491` everywhere
-- Footer: service area column + service links column + clickable phone
-- Update `index.html` `<title>` and meta defaults
-- New `scripts/generate-sitemap.ts` listing all routes; postbuild hook
-- Update `public/robots.txt` to reference sitemap
+## Instant Booking Wizard
 
-## Schema
-- LocalBusiness (already present, expand `areaServed`, add `geo`, `openingHours`)
-- Service schema per service page (`@type: Service`, `provider`, `areaServed`, `serviceType`)
-- FAQPage schema on home + each service page
-- BreadcrumbList on inner pages
+Single page, step state in React, progress bar at top.
 
-## Files to Create
-- `src/components/ServicePageLayout.tsx` (reusable layout)
-- `src/components/StickyMobileCTA.tsx`
-- `src/components/ServiceAreasSection.tsx`
-- `src/lib/seo.ts` (schema builders)
-- `src/pages/services/InteriorDetailing.tsx`
-- `src/pages/services/ExteriorDetailing.tsx`
-- `src/pages/services/CeramicCoating.tsx`
-- `src/pages/services/PaintCorrection.tsx`
-- `src/pages/services/FleetDetailing.tsx`
-- `src/pages/services/BoatDetailing.tsx`
-- `src/pages/services/AircraftDetailing.tsx`
-- `src/pages/locations/KelownaLocation.tsx`
-- `scripts/generate-sitemap.ts`
+1. **Vehicle size** — 6 options. XL → redirect to `/book/quote?reason=xl`.
+2. **Condition** — Normal / Heavy / Extreme. Extreme → redirect to `/book/quote?reason=extreme`.
+3. **Add-ons** — 6 toggleable cards.
+4. **Customer details** — name, phone, email, vehicle Y/M/M, address, notes (zod-validated).
+5. **Appointment** — date picker, time window, mobile vs drop-off.
+6. **Review & Deposit** — live price summary, "Pay deposit & reserve" → Stripe Checkout.
 
-## Files to Edit
-- `src/App.tsx` — register all new routes
-- `src/pages/Index.tsx` — updated H1/meta/FAQ/schema
-- `src/components/HeroSection.tsx` — new H1 + sub copy
-- `src/components/ServicesGrid.tsx` — 8 cards w/ links
-- `src/components/FAQSection.tsx` — 10 Qs + schema
-- `src/components/FinalCTASection.tsx` — new copy + Call/Text buttons
-- `src/components/FooterSection.tsx` — service area + service nav links
-- `src/components/Navbar.tsx` — add Services dropdown / link
-- `index.html` — title + meta defaults
-- `public/robots.txt` — add Sitemap directive
-- `package.json` + `tsconfig.node.json` — postbuild script + tsx
+Live price = package base + size modifier + condition modifier + add-ons. Deposit = $50 (Interior, Express Exterior, Express Full) or $100 (Executive).
 
-## Final Deliverable
-After implementation, I'll output the SEO audit checklist (title, meta, H1, target keywords, internal links, schema, conversion improvements) for every page.
+## Custom Quote Form
 
-## Confirm / Adjust Before I Build
-- OK to proceed with no separate `/rv-detailing-kelowna` (RV mentioned within Fleet/Boat)?
-- Use the existing phone `+1 250-862-7491` and email `pay@santosautodetailing.ca` from current schema?
-- Sticky mobile CTA: Call + Text + Book Now (3 buttons) — confirm.
+Single page. Fields per spec, photo upload (Supabase Storage bucket `quote-photos`, up to ~6 files, 10MB each, image types only). On submit: insert into `quote_requests`, show success message.
+
+## Backend (Lovable Cloud / Supabase)
+
+### Tables
+
+- `bookings` — id, created_at, package_slug, package_name, base_price, vehicle_size, size_modifier, condition, condition_modifier, vehicle_year/make/model, customer first/last/phone/email, address, notes, preferred_date, time_window, service_mode, estimated_total, deposit_amount, status (enum), stripe_session_id, internal_notes.
+- `booking_addons` — id, booking_id (FK), addon_key, addon_label, price.
+- `quote_requests` — id, created_at, name, phone, email, service_needed, asset_type, year/make/model, length_ft, main_goal, timeline, notes, photo_urls (text[]), status (enum), internal_notes.
+- `payments` — id, booking_id (FK), stripe_session_id, stripe_payment_intent, amount, currency, status, raw jsonb, created_at.
+- `user_roles` — standard pattern (`app_role` enum: admin, user) with `has_role()` security-definer function.
+
+### Enums
+
+- `booking_status`: New Booking, Deposit Paid, Pending Confirmation, Confirmed, Completed, Cancelled.
+- `quote_status`: New Request, Needs Review, Quote Sent, Accepted, Declined, Completed.
+
+### RLS
+
+- `bookings`, `booking_addons`, `quote_requests`, `payments`: public **insert** allowed (anonymous customers booking); **select/update/delete** restricted to admins via `has_role(auth.uid(),'admin')`.
+- `user_roles`: select own + admin manage.
+- Storage bucket `quote-photos`: public read (so admin emails/dashboard can view), public insert via signed flow from the quote form.
+
+### Edge Functions
+
+- `create-deposit-checkout` — input: booking payload + computed deposit. Inserts `bookings` row (status: New Booking) + `booking_addons`, creates Stripe Checkout Session in `payment` mode, returns `url`. (`verify_jwt = false`.)
+- `verify-deposit` — input: `session_id`. Retrieves session from Stripe, if `paid` updates booking → `Deposit Paid`, inserts `payments` row. Used by success page.
+- `stripe-webhook` — listens for `checkout.session.completed` as a backup path. (`verify_jwt = false`.)
+
+Stripe secret key already managed by Lovable Payments — no manual secret needed.
+
+## Admin Dashboard (`/admin`)
+
+- Auth: email+password sign in (Lovable Cloud). If signed-in user lacks `admin` role → "Access denied".
+- Tabs: **Bookings** | **Quote Requests**.
+- Table view: date, customer, package/service, total, status badge, actions.
+- Filter by status (Select dropdown).
+- Row click → side Sheet with full details, add-ons list, payment status, internal notes textarea (auto-save on blur), status change Select.
+
+## Design
+
+Reuse existing dark obsidian + electric cyan tokens. Booking cards mirror `PackagesSection` styling. Wizard steps use large tap targets, generous spacing, single-column on mobile. Sticky mobile bottom CTA shows running total + "Continue".
+
+## Technical Notes
+
+- Stripe Checkout in `payment` mode (one-time deposit, not subscription). Success URL: `/book/success?session_id={CHECKOUT_SESSION_ID}`. Cancel URL: back to wizard.
+- Deposit recorded as a custom line item titled "Santos Detail Deposit — {Package}".
+- Use `react-hook-form` + `zod` for validation across both forms.
+- Photo uploads: client-side resize to ≤1600px before upload to keep storage lean.
+- Add `/book` and `/admin` to `App.tsx` routes (above catch-all).
+- New components in `src/components/booking/` and `src/pages/admin/`.
+
+## Out of Scope (flag for later)
+
+- SMS/email notifications to customer or Santos on new booking (can add via Resend connector later).
+- Calendar sync (Google Calendar) — could be added via connector.
+- Refund flow from admin UI.
+
+---
+
+**Confirm to proceed and I'll:** enable Lovable Cloud → run payments eligibility + enable Stripe → build schema, edge functions, booking UI, quote UI, and admin dashboard in that order.
