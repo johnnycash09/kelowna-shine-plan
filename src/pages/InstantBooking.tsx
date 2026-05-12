@@ -42,10 +42,24 @@ const InstantBooking = () => {
   const [date, setDate] = useState<Date | undefined>();
   const [timeWindow, setTimeWindow] = useState<string>("");
   const [serviceMode, setServiceMode] = useState<string>("");
+  const [blockedWindows, setBlockedWindows] = useState<string[]>([]);
 
   useEffect(() => {
     if (!pkg) navigate("/book", { replace: true });
   }, [pkg, navigate]);
+
+  // Look up which time windows are already booked when the user picks a date
+  useEffect(() => {
+    if (!date) { setBlockedWindows([]); return; }
+    const d = format(date, "yyyy-MM-dd");
+    supabase.from("blocked_slots").select("time_window").eq("slot_date", d).then(({ data }) => {
+      setBlockedWindows((data ?? []).map((r: any) => r.time_window));
+      if (timeWindow && (data ?? []).some((r: any) => r.time_window === timeWindow)) {
+        setTimeWindow("");
+      }
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [date]);
 
   const total = useMemo(() => {
     if (!pkg) return 0;
@@ -247,14 +261,22 @@ const InstantBooking = () => {
               <div className="space-y-2">
                 <Label>Preferred time window</Label>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  {TIME_WINDOWS.map((t) => (
-                    <button key={t} onClick={() => setTimeWindow(t)}
-                      className={cn("rounded-lg border bg-card py-3 text-sm transition",
-                        timeWindow === t ? "border-accent text-accent" : "border-border hover:border-muted-foreground")}>
-                      {t}
-                    </button>
-                  ))}
+                  {TIME_WINDOWS.map((t) => {
+                    const blocked = blockedWindows.includes(t);
+                    return (
+                      <button key={t} onClick={() => !blocked && setTimeWindow(t)}
+                        disabled={blocked}
+                        className={cn("rounded-lg border bg-card py-3 text-sm transition",
+                          blocked ? "opacity-40 cursor-not-allowed line-through" :
+                          timeWindow === t ? "border-accent text-accent" : "border-border hover:border-muted-foreground")}>
+                        {t}
+                      </button>
+                    );
+                  })}
                 </div>
+                {date && blockedWindows.length > 0 && (
+                  <p className="text-xs text-muted-foreground">Greyed-out windows are already booked.</p>
+                )}
               </div>
 
               <div className="space-y-2">
