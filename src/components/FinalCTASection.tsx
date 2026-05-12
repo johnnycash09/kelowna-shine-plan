@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, Phone, MessageSquare } from "lucide-react";
 import ceramicImg from "@/assets/service-ceramic.jpg";
+import { PHONE, PHONE_DISPLAY } from "@/lib/seo";
 
 const transition = { type: "spring" as const, duration: 0.7, bounce: 0 };
 
@@ -29,10 +30,10 @@ const FinalCTASection = () => {
           Ready when you are
         </p>
         <h2 className="mx-auto max-w-3xl font-display text-5xl font-semibold tracking-tight text-foreground text-balance sm:text-6xl md:text-7xl">
-          Book your detail today.
+          Ready to bring your vehicle back to a premium finish?
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-          Limited appointments each week. Reserve your spot and we'll confirm within 2 hours.
+          Book your Santos detail today. Limited appointments each week — we'll confirm within 2 hours.
         </p>
 
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
@@ -44,11 +45,18 @@ const FinalCTASection = () => {
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </a>
           <a
-            href="tel:+12501234567"
+            href={`tel:${PHONE}`}
             className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background/40 px-10 py-4 font-display text-base font-medium text-foreground backdrop-blur-md transition-colors hover:bg-secondary"
           >
-            <Phone className="h-4 w-4" />
-            (250) 123-4567
+            <Phone className="h-4 w-4 text-accent" />
+            {PHONE_DISPLAY}
+          </a>
+          <a
+            href={`sms:${PHONE}`}
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background/40 px-10 py-4 font-display text-base font-medium text-foreground backdrop-blur-md transition-colors hover:bg-secondary"
+          >
+            <MessageSquare className="h-4 w-4 text-accent" />
+            Text Us
           </a>
         </div>
       </motion.div>

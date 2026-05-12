@@ -1,41 +1,34 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+import { ALL_SERVICES } from "@/lib/seo";
 import interiorImg from "@/assets/service-interior.jpg";
 import exteriorImg from "@/assets/service-exterior.jpg";
 import correctionImg from "@/assets/service-correction.jpg";
 import ceramicImg from "@/assets/service-ceramic.jpg";
+import heroImg from "@/assets/hero-detailing.jpg";
 
-const services = [
-  {
-    eyebrow: "01 · Interior",
-    title: "Interior Reset.",
-    benefit: "Factory-fresh cabin. Soft-touch surfaces. Showroom scent.",
-    image: interiorImg,
-    alt: "Detailing brush on stitched black leather seat",
-  },
-  {
-    eyebrow: "02 · Exterior",
-    title: "Exterior Detail.",
-    benefit: "Hand-washed. Clay-decontaminated. Sealed for deep gloss.",
-    image: exteriorImg,
-    alt: "Foam cascading over glossy black paint",
-  },
-  {
-    eyebrow: "03 · Correction",
-    title: "Paint Correction.",
-    benefit: "Swirls gone. Scratches lifted. True mirror finish — restored.",
-    image: correctionImg,
-    alt: "Dual-action polisher correcting paint",
-  },
-  {
-    eyebrow: "04 · Protection",
-    title: "Ceramic Coating.",
-    benefit: "7-year protection. Easier washes. Enduring depth and shine.",
-    image: ceramicImg,
-    alt: "Water beading on freshly ceramic-coated black hood",
-  },
-];
+const imageMap: Record<string, string> = {
+  "/interior-detailing-kelowna": interiorImg,
+  "/exterior-detailing-kelowna": exteriorImg,
+  "/paint-correction-kelowna": correctionImg,
+  "/ceramic-coating-kelowna": ceramicImg,
+  "/fleet-detailing-kelowna": exteriorImg,
+  "/boat-detailing-kelowna": heroImg,
+  "/aircraft-detailing-kelowna": heroImg,
+};
 
-const transition = { type: "spring" as const, duration: 0.7, bounce: 0 };
+const altMap: Record<string, string> = {
+  "/interior-detailing-kelowna": "Interior detailing for SUV in Kelowna",
+  "/exterior-detailing-kelowna": "Exterior detailing for luxury car in Kelowna",
+  "/paint-correction-kelowna": "Paint correction removing swirl marks in Kelowna",
+  "/ceramic-coating-kelowna": "Ceramic coating application on luxury vehicle in Kelowna",
+  "/fleet-detailing-kelowna": "Fleet detailing for company vehicles in Kelowna",
+  "/boat-detailing-kelowna": "Boat detailing and polishing in the Okanagan",
+  "/aircraft-detailing-kelowna": "Aircraft detailing for private jet in Kelowna",
+};
+
+const transition = { type: "spring" as const, duration: 0.6, bounce: 0 };
 
 const ServicesGrid = () => {
   return (
@@ -54,47 +47,45 @@ const ServicesGrid = () => {
           <h2 className="font-display text-4xl font-semibold tracking-tight text-foreground text-balance sm:text-5xl md:text-6xl">
             Built for vehicles that deserve more.
           </h2>
+          <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+            From daily drivers to private jets — premium detailing, paint correction, and ceramic coating across Kelowna and the Okanagan.
+          </p>
         </motion.div>
 
-        <div className="space-y-24 md:space-y-32">
-          {services.map((s, i) => (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {ALL_SERVICES.map((s, i) => (
             <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 30 }}
+              key={s.slug}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={transition}
-              className={`grid items-center gap-10 md:grid-cols-2 md:gap-16 ${
-                i % 2 === 1 ? "md:[&>div:first-child]:order-2" : ""
-              }`}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ ...transition, delay: i * 0.05 }}
             >
-              <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-card">
-                <img
-                  src={s.image}
-                  alt={s.alt}
-                  loading="lazy"
-                  width={1024}
-                  height={768}
-                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
-                />
-              </div>
-              <div>
-                <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                  {s.eyebrow}
-                </p>
-                <h3 className="font-display text-3xl font-semibold tracking-tight text-foreground text-balance sm:text-4xl md:text-5xl">
-                  {s.title}
-                </h3>
-                <p className="mt-6 max-w-md text-lg text-muted-foreground">
-                  {s.benefit}
-                </p>
-                <a
-                  href="#contact"
-                  className="mt-8 inline-flex items-center gap-2 font-display text-sm font-semibold text-foreground border-b border-foreground/40 pb-1 transition-colors hover:text-accent hover:border-accent"
-                >
-                  Book this service →
-                </a>
-              </div>
+              <Link
+                to={s.slug}
+                className="group block h-full overflow-hidden rounded-lg border border-border bg-card/50 transition-colors hover:border-accent/40"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-card">
+                  <img
+                    src={imageMap[s.slug]}
+                    alt={altMap[s.slug]}
+                    loading="lazy"
+                    width={800}
+                    height={600}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-display text-xl font-semibold tracking-tight text-foreground group-hover:text-accent">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{s.short}</p>
+                  <span className="mt-5 inline-flex items-center gap-1 font-mono text-xs uppercase tracking-[0.2em] text-accent">
+                    Explore <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>

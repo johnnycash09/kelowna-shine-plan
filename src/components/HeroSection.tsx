@@ -38,8 +38,8 @@ const HeroSection = () => {
             transition={{ ...transition, delay: 0.2 }}
             className="font-display text-5xl font-semibold leading-[0.95] tracking-tight text-foreground text-balance sm:text-6xl lg:text-7xl xl:text-[5.5rem]"
           >
-            Kelowna's<br />
-            <span className="text-gradient-primary">Automotive Surface Studio.</span>
+            Premium Mobile<br />
+            <span className="text-gradient-primary">Detailing in Kelowna.</span>
           </motion.h1>
 
           <motion.p
@@ -48,7 +48,7 @@ const HeroSection = () => {
             transition={{ ...transition, delay: 0.35 }}
             className="mt-8 max-w-xl text-lg text-muted-foreground sm:text-xl"
           >
-            Premium mobile detailing for vehicles that deserve more.
+            Luxury mobile and in-shop detailing for vehicles, boats, fleets, RVs, and aircraft across the Okanagan.
           </motion.p>
 
           <motion.div
