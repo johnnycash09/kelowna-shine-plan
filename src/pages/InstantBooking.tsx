@@ -28,6 +28,8 @@ const InstantBooking = () => {
   const pkg = getPackage(slug);
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
+  const initialPayType = (typeof window !== "undefined" && new URLSearchParams(window.location.search).get("pay") === "full") ? "full" : "deposit";
+  const [paymentType, setPaymentType] = useState<"deposit" | "full">(initialPayType);
 
   const [size, setSize] = useState<typeof VEHICLE_SIZES[number] | null>(null);
   const [condition, setCondition] = useState<typeof CONDITIONS[number] | null>(null);
