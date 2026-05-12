@@ -100,7 +100,7 @@ Deno.serve(async (req) => {
         quantity: 1,
       }],
       customer_email: body.email,
-      automatic_tax: { enabled: true },
+      ...(Deno.env.get("ENABLE_AUTOMATIC_TAX") === "true" ? { automatic_tax: { enabled: true } } : {}),
       success_url: `${body.origin}/book/success?session_id={CHECKOUT_SESSION_ID}&booking_id=${booking.id}`,
       cancel_url: `${body.origin}/book/instant/${body.package_slug}?cancelled=1`,
       metadata: {
