@@ -7,47 +7,47 @@
 @layer base {
   :root {
     --background: 0 0% 4%;
-    --foreground: 0 0% 98%;
+    --foreground: 33 36% 93%;
 
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 10%;
+    --card-foreground: 33 36% 93%;
 
-    --popover: 0 0% 7%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 33 36% 93%;
 
-    --primary: 0 0% 96%;
-    --primary-foreground: 0 0% 6%;
+    --primary: 33 36% 93%;
+    --primary-foreground: 0 0% 4%;
 
-    --secondary: 0 0% 11%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 33 36% 93%;
 
-    --muted: 0 0% 9%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 54%;
 
-    --accent: 38 35% 70%;
-    --accent-foreground: 0 0% 6%;
+    --accent: 36 45% 51%;
+    --accent-foreground: 0 0% 4%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 16%;
     --input: 0 0% 16%;
-    --ring: 38 35% 70%;
+    --ring: 36 45% 51%;
 
     --radius: 0.25rem;
 
-    --sidebar-background: 0 0% 7%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 0 0% 96%;
-    --sidebar-primary-foreground: 0 0% 6%;
-    --sidebar-accent: 0 0% 11%;
-    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 33 36% 93%;
+    --sidebar-primary: 33 36% 93%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 0 0% 10%;
+    --sidebar-accent-foreground: 33 36% 93%;
     --sidebar-border: 0 0% 16%;
-    --sidebar-ring: 38 35% 70%;
+    --sidebar-ring: 36 45% 51%;
 
     --shadow-elegant: 0 30px 60px -20px rgba(0,0,0,0.6);
     --gradient-radial: radial-gradient(ellipse at center, hsl(0 0% 10%) 0%, hsl(0 0% 4%) 70%);
-    --gradient-platinum: linear-gradient(135deg, hsl(38 35% 80%), hsl(38 25% 60%));
+    --gradient-platinum: linear-gradient(135deg, hsl(36 50% 62%), hsl(36 45% 42%));
     --font-display: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
@@ -83,7 +83,7 @@
   }
   .text-gradient-primary {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(38 40% 85%), hsl(38 25% 55%));
+    background-image: linear-gradient(135deg, hsl(36 55% 65%), hsl(36 45% 42%));
   }
   .bg-gradient-radial {
     background-image: var(--gradient-radial);
