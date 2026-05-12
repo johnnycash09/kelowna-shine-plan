@@ -94,7 +94,7 @@ const ServicePageLayout = (p: ServicePageProps) => {
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
               <a
-                href="https://santosautodetailing.ca/booking"
+                href="/book"
                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-8 py-4 font-display text-base font-semibold text-background transition-all hover:bg-accent active:scale-[0.98]"
               >
                 Book Now
@@ -210,7 +210,7 @@ const ServicePageLayout = (p: ServicePageProps) => {
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a
-                href="https://santosautodetailing.ca/booking"
+                href="/book"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-10 py-4 font-display text-base font-semibold text-background hover:bg-accent"
               >
                 Book Now

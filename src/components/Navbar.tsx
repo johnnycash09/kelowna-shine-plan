@@ -45,7 +45,7 @@ const Navbar = () => {
         </div>
 
         <a
-          href="#contact"
+          href="/book"
           className="hidden rounded-full bg-foreground px-5 py-2.5 font-display text-sm font-semibold text-background transition-all hover:bg-accent md:inline-flex"
         >
           Book Now
@@ -74,7 +74,7 @@ const Navbar = () => {
               </a>
             ))}
             <a
-              href="#contact"
+              href="/book"
               onClick={() => setOpen(false)}
               className="mt-2 block rounded-full bg-foreground py-3.5 text-center font-display text-sm font-semibold text-background"
             >

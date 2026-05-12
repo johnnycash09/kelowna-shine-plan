@@ -14,16 +14,288 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      booking_addons: {
+        Row: {
+          addon_key: string
+          addon_label: string
+          booking_id: string
+          created_at: string
+          id: string
+          price: number
+        }
+        Insert: {
+          addon_key: string
+          addon_label: string
+          booking_id: string
+          created_at?: string
+          id?: string
+          price: number
+        }
+        Update: {
+          addon_key?: string
+          addon_label?: string
+          booking_id?: string
+          created_at?: string
+          id?: string
+          price?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "booking_addons_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bookings: {
+        Row: {
+          address: string | null
+          base_price: number
+          condition: string
+          condition_modifier: number
+          created_at: string
+          deposit_amount: number
+          email: string
+          estimated_total: number
+          first_name: string
+          id: string
+          internal_notes: string | null
+          last_name: string
+          notes: string | null
+          package_name: string
+          package_slug: string
+          phone: string
+          preferred_date: string | null
+          service_mode: string | null
+          size_modifier: number
+          status: Database["public"]["Enums"]["booking_status"]
+          stripe_session_id: string | null
+          time_window: string | null
+          updated_at: string
+          vehicle_make: string | null
+          vehicle_model: string | null
+          vehicle_size: string
+          vehicle_year: string | null
+        }
+        Insert: {
+          address?: string | null
+          base_price: number
+          condition: string
+          condition_modifier?: number
+          created_at?: string
+          deposit_amount: number
+          email: string
+          estimated_total: number
+          first_name: string
+          id?: string
+          internal_notes?: string | null
+          last_name: string
+          notes?: string | null
+          package_name: string
+          package_slug: string
+          phone: string
+          preferred_date?: string | null
+          service_mode?: string | null
+          size_modifier?: number
+          status?: Database["public"]["Enums"]["booking_status"]
+          stripe_session_id?: string | null
+          time_window?: string | null
+          updated_at?: string
+          vehicle_make?: string | null
+          vehicle_model?: string | null
+          vehicle_size: string
+          vehicle_year?: string | null
+        }
+        Update: {
+          address?: string | null
+          base_price?: number
+          condition?: string
+          condition_modifier?: number
+          created_at?: string
+          deposit_amount?: number
+          email?: string
+          estimated_total?: number
+          first_name?: string
+          id?: string
+          internal_notes?: string | null
+          last_name?: string
+          notes?: string | null
+          package_name?: string
+          package_slug?: string
+          phone?: string
+          preferred_date?: string | null
+          service_mode?: string | null
+          size_modifier?: number
+          status?: Database["public"]["Enums"]["booking_status"]
+          stripe_session_id?: string | null
+          time_window?: string | null
+          updated_at?: string
+          vehicle_make?: string | null
+          vehicle_model?: string | null
+          vehicle_size?: string
+          vehicle_year?: string | null
+        }
+        Relationships: []
+      }
+      payments: {
+        Row: {
+          amount: number
+          booking_id: string | null
+          created_at: string
+          currency: string
+          id: string
+          raw: Json | null
+          status: string
+          stripe_payment_intent: string | null
+          stripe_session_id: string | null
+        }
+        Insert: {
+          amount: number
+          booking_id?: string | null
+          created_at?: string
+          currency?: string
+          id?: string
+          raw?: Json | null
+          status: string
+          stripe_payment_intent?: string | null
+          stripe_session_id?: string | null
+        }
+        Update: {
+          amount?: number
+          booking_id?: string | null
+          created_at?: string
+          currency?: string
+          id?: string
+          raw?: Json | null
+          status?: string
+          stripe_payment_intent?: string | null
+          stripe_session_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_booking_id_fkey"
+            columns: ["booking_id"]
+            isOneToOne: false
+            referencedRelation: "bookings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      quote_requests: {
+        Row: {
+          asset_type: string | null
+          created_at: string
+          email: string
+          id: string
+          internal_notes: string | null
+          length_ft: string | null
+          main_goal: string | null
+          name: string
+          notes: string | null
+          phone: string
+          photo_urls: string[]
+          service_needed: string
+          status: Database["public"]["Enums"]["quote_status"]
+          timeline: string | null
+          updated_at: string
+          vehicle_make: string | null
+          vehicle_model: string | null
+          vehicle_year: string | null
+        }
+        Insert: {
+          asset_type?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          internal_notes?: string | null
+          length_ft?: string | null
+          main_goal?: string | null
+          name: string
+          notes?: string | null
+          phone: string
+          photo_urls?: string[]
+          service_needed: string
+          status?: Database["public"]["Enums"]["quote_status"]
+          timeline?: string | null
+          updated_at?: string
+          vehicle_make?: string | null
+          vehicle_model?: string | null
+          vehicle_year?: string | null
+        }
+        Update: {
+          asset_type?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          internal_notes?: string | null
+          length_ft?: string | null
+          main_goal?: string | null
+          name?: string
+          notes?: string | null
+          phone?: string
+          photo_urls?: string[]
+          service_needed?: string
+          status?: Database["public"]["Enums"]["quote_status"]
+          timeline?: string | null
+          updated_at?: string
+          vehicle_make?: string | null
+          vehicle_model?: string | null
+          vehicle_year?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
+      booking_status:
+        | "New Booking"
+        | "Deposit Paid"
+        | "Pending Confirmation"
+        | "Confirmed"
+        | "Completed"
+        | "Cancelled"
+      quote_status:
+        | "New Request"
+        | "Needs Review"
+        | "Quote Sent"
+        | "Accepted"
+        | "Declined"
+        | "Completed"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +422,24 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+      booking_status: [
+        "New Booking",
+        "Deposit Paid",
+        "Pending Confirmation",
+        "Confirmed",
+        "Completed",
+        "Cancelled",
+      ],
+      quote_status: [
+        "New Request",
+        "Needs Review",
+        "Quote Sent",
+        "Accepted",
+        "Declined",
+        "Completed",
+      ],
+    },
   },
 } as const

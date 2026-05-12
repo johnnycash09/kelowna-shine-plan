@@ -14,6 +14,13 @@ import FleetDetailing from "./pages/services/FleetDetailing.tsx";
 import BoatDetailing from "./pages/services/BoatDetailing.tsx";
 import AircraftDetailing from "./pages/services/AircraftDetailing.tsx";
 import KelownaLocation from "./pages/locations/KelownaLocation.tsx";
+import BookNow from "./pages/BookNow.tsx";
+import InstantBooking from "./pages/InstantBooking.tsx";
+import CustomQuote from "./pages/CustomQuote.tsx";
+import BookingSuccess from "./pages/BookingSuccess.tsx";
+import QuoteSuccess from "./pages/QuoteSuccess.tsx";
+import AdminAuth from "./pages/admin/AdminAuth.tsx";
+import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +42,13 @@ const App = () => (
             <Route path="/boat-detailing-kelowna" element={<BoatDetailing />} />
             <Route path="/aircraft-detailing-kelowna" element={<AircraftDetailing />} />
             <Route path="/auto-detailing-kelowna" element={<KelownaLocation />} />
+            <Route path="/book" element={<BookNow />} />
+            <Route path="/book/instant/:slug" element={<InstantBooking />} />
+            <Route path="/book/quote" element={<CustomQuote />} />
+            <Route path="/book/success" element={<BookingSuccess />} />
+            <Route path="/book/quote/success" element={<QuoteSuccess />} />
+            <Route path="/admin" element={<AdminAuth />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
