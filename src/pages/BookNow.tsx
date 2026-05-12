@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import { Button } from "@/components/ui/button";
 import { PACKAGES } from "@/lib/booking-config";
+import { PACKAGE_PRICE_IDS } from "@/lib/checkout-products";
 
 const BookNow = () => {
   return (
@@ -86,9 +87,12 @@ const BookNow = () => {
                     ))}
                   </ul>
                   <Link to={`/book/instant/${pkg.slug}`}>
-                    <Button className="w-full">Book Now</Button>
+                    <Button className="w-full">Book with ${pkg.deposit} deposit</Button>
                   </Link>
-                  <p className="text-xs text-muted-foreground text-center mt-3">${pkg.deposit} deposit reserves your spot</p>
+                  <Link to={`/checkout?price=${PACKAGE_PRICE_IDS[pkg.slug]}&label=${encodeURIComponent(pkg.name + " — $" + pkg.basePrice)}`}>
+                    <Button className="w-full mt-2" variant="outline">Pay full ${pkg.basePrice}</Button>
+                  </Link>
+                  <p className="text-xs text-muted-foreground text-center mt-3">Sedan-size base price. Taxes calculated at checkout.</p>
                 </div>
               ))}
             </div>
