@@ -14,6 +14,7 @@ const HeroSection = () => {
           alt="Premium vehicle detailing by Santos Auto Detailing in Kelowna"
           className="h-full w-full object-cover opacity-90"
           loading="eager"
+          fetchpriority="high"
           width={1440}
           height={1920}
         />
