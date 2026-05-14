@@ -23,3 +23,15 @@ verify_jwt = false
 
 [functions.cancel-subscription]
 verify_jwt = false
+
+[functions.request-portal-link]
+verify_jwt = false
+
+[functions.redeem-portal-token]
+verify_jwt = false
+
+[functions.request-maintenance-link]
+verify_jwt = false
+
+[functions.create-maintenance-booking]
+verify_jwt = false
