@@ -1,0 +1,29 @@
+# Santos Auto Detailing
+
+> Premium mobile auto detailing, ceramic coating, and paint correction serving Kelowna and the Okanagan, BC.
+
+Santos Auto Detailing is a Kelowna-based mobile and in-shop detailer offering interior and exterior detailing, ceramic coating, paint correction, fleet, boat, and aircraft detailing. Booking, deposits, and a monthly maintenance subscription are handled online.
+
+## Services
+
+- [Interior Detailing](/interior-detailing-kelowna): Deep cabin reset and shampoo.
+- [Exterior Detailing](/exterior-detailing-kelowna): Hand wash, decontamination, and sealant.
+- [Ceramic Coating](/ceramic-coating-kelowna): Multi-year SiO2 paint protection.
+- [Paint Correction](/paint-correction-kelowna): Machine polishing to remove swirls and defects.
+- [Fleet Detailing](/fleet-detailing-kelowna): Recurring detailing for business vehicles.
+- [Boat Detailing](/boat-detailing-kelowna): Marine detailing on Okanagan Lake.
+- [Aircraft Detailing](/aircraft-detailing-kelowna): Private aviation detailing.
+
+## Locations
+
+- [Kelowna](/auto-detailing-kelowna): Mobile and in-shop service in Kelowna and the Central Okanagan.
+
+## Booking
+
+- [Book Now](/book): Choose a package and schedule.
+- [Custom Quote](/book/quote): Send photos for a tailored quote.
+- [Maintenance Plan](/maintenance): Monthly subscription with included visits.
+
+## Optional
+
+- [Maintenance Booking](/book/maintenance): Subscriber-only $0 maintenance scheduling (magic link).
