@@ -14,15 +14,17 @@ import { MAINTENANCE_PRICE_ID, MAINTENANCE_PRICE } from "@/lib/checkout-products
 const MaintenancePlan = () => {
   const [manageEmail, setManageEmail] = useState("");
   const [opening, setOpening] = useState(false);
-  const openPortal = async () => {
+  const [manageSent, setManageSent] = useState(false);
+  const openPortal = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (!/\S+@\S+\.\S+/.test(manageEmail)) return toast.error("Enter the email you subscribed with.");
     setOpening(true);
-    const { data, error } = await supabase.functions.invoke("create-portal-session", {
-      body: { email: manageEmail, returnUrl: window.location.origin + "/maintenance", environment: getStripeEnvironment() },
+    const { error } = await supabase.functions.invoke("request-portal-link", {
+      body: { email: manageEmail, origin: window.location.origin, environment: getStripeEnvironment() },
     });
     setOpening(false);
-    if (error || !data?.url) return toast.error(error?.message || data?.error || "Could not open portal.");
-    window.open(data.url, "_blank");
+    if (error) return toast.error(error.message);
+    setManageSent(true);
   };
   return (
     <div className="min-h-screen bg-background">
@@ -68,7 +70,7 @@ const MaintenancePlan = () => {
                   </li>
                 ))}
               </ul>
-              <Link to={`/checkout?price=${MAINTENANCE_PRICE_ID}&label=${encodeURIComponent("Santos Maintenance Plan — $" + MAINTENANCE_PRICE + "/month")}`}>
+              <Link to={`/checkout?price=${MAINTENANCE_PRICE_ID}&label=${encodeURIComponent("Santos Maintenance Plan — $" + MAINTENANCE_PRICE + "/month")}&plan=maintenance`}>
                 <Button size="lg" className="w-full">
                   Start subscription <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -92,6 +94,34 @@ const MaintenancePlan = () => {
                 <h3 className="font-display text-lg font-semibold mb-1">Always protected</h3>
                 <p className="text-sm text-muted-foreground">Consistent wash routine prevents swirls, fading, and contamination buildup.</p>
               </div>
+            </div>
+          </div>
+
+          {/* Subscriber sections */}
+          <div id="schedule" className="mt-20 grid md:grid-cols-2 gap-6 max-w-5xl mx-auto scroll-mt-24">
+            <div className="rounded-lg border border-border bg-card p-6">
+              <h3 className="font-display text-xl font-semibold mb-2">Already a subscriber?</h3>
+              <p className="text-sm text-muted-foreground mb-4">Schedule this month's visit.</p>
+              <Link to="/book/maintenance">
+                <Button variant="outline" className="w-full">Book my monthly visit <ArrowRight className="ml-2 h-4 w-4" /></Button>
+              </Link>
+            </div>
+            <div id="manage" className="rounded-lg border border-border bg-card p-6 scroll-mt-24">
+              <h3 className="font-display text-xl font-semibold mb-2">Manage subscription</h3>
+              <p className="text-sm text-muted-foreground mb-4">Update card, cancel, or view invoices.</p>
+              {manageSent ? (
+                <div className="rounded border border-accent/40 bg-accent/5 p-3 text-sm">
+                  If <strong>{manageEmail}</strong> has a subscription, you'll receive a secure link in your inbox shortly. The link expires in 30 minutes.
+                </div>
+              ) : (
+                <form onSubmit={openPortal} className="space-y-3">
+                  <Input type="email" required placeholder="Email used at signup" value={manageEmail} onChange={(e) => setManageEmail(e.target.value)} />
+                  <Button type="submit" variant="outline" className="w-full" disabled={opening}>
+                    {opening && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                    Email me a secure link
+                  </Button>
+                </form>
+              )}
             </div>
           </div>
 

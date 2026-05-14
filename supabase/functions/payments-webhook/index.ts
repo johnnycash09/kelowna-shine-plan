@@ -83,12 +83,22 @@ Deno.serve(async (req) => {
       case "customer.subscription.updated": {
         const result = await upsertSubscription(event.data.object, env);
         if (event.type === "customer.subscription.created" && result.isNew && result.email) {
-          // Fire welcome + owner emails
           const origin = "https://santosautodetailing.ca";
+          // Issue magic links so welcome email contains real, secure URLs
+          db().functions.invoke("request-maintenance-link", {
+            body: { email: result.email, origin, environment: env },
+          }).catch((e) => console.error(e));
+          db().functions.invoke("request-portal-link", {
+            body: { email: result.email, origin, environment: env },
+          }).catch((e) => console.error(e));
           db().functions.invoke("send-notification", {
             body: {
               kind: "subscription_welcome", to: result.email,
-              data: { customer_name: result.name, book_url: `${origin}/book/maintenance?email=${encodeURIComponent(result.email)}` },
+              data: {
+                customer_name: result.name,
+                book_url: `${origin}/maintenance#schedule`,
+                portal_url: `${origin}/maintenance#manage`,
+              },
             },
           }).catch((e) => console.error(e));
           db().functions.invoke("send-notification", {

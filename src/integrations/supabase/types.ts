@@ -180,6 +180,39 @@ export type Database = {
         }
         Relationships: []
       }
+      magic_links: {
+        Row: {
+          created_at: string
+          email: string
+          expires_at: string
+          id: string
+          purpose: string
+          subscription_id: string | null
+          token: string
+          used_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          expires_at: string
+          id?: string
+          purpose: string
+          subscription_id?: string | null
+          token: string
+          used_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          expires_at?: string
+          id?: string
+          purpose?: string
+          subscription_id?: string | null
+          token?: string
+          used_at?: string | null
+        }
+        Relationships: []
+      }
       payments: {
         Row: {
           amount: number
