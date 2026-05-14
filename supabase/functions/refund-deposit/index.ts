@@ -64,6 +64,12 @@ Deno.serve(async (req) => {
     });
     await admin.from("bookings").update({ status: "Cancelled" }).eq("id", bookingId);
     await admin.from("blocked_slots").delete().eq("booking_id", bookingId);
+    const { data: booking } = await admin.from("bookings").select("*").eq("id", bookingId).maybeSingle();
+    if (booking) {
+      admin.functions.invoke("send-notification", {
+        body: { kind: "refund_customer", to: booking.email, data: { ...booking, refund_amount: payment.amount / 100 } },
+      }).catch((e) => console.error(e));
+    }
 
     return new Response(JSON.stringify({ refunded: true, refund_id: refund.id }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },

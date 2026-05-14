@@ -58,6 +58,12 @@ const CustomQuote = () => {
         ...form, photo_urls: photoUrls,
       });
       if (error) throw error;
+      supabase.functions.invoke("send-notification", {
+        body: { kind: "quote_request_customer", to: form.email, data: form },
+      }).catch(() => {});
+      supabase.functions.invoke("send-notification", {
+        body: { kind: "quote_request_owner", to: form.email, data: { ...form, photo_count: photoUrls.length } },
+      }).catch(() => {});
       navigate("/book/quote/success");
     } catch (e) {
       console.error(e);

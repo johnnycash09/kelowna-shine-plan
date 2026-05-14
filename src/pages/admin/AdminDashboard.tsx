@@ -291,13 +291,13 @@ const AdminDashboard = () => {
                   <Textarea defaultValue={openBooking.internal_notes ?? ""}
                     onBlur={(e) => updateBooking(openBooking.id, { internal_notes: e.target.value })} />
                 </Section>
-                {openBooking.status === "Deposit Paid" && (
+                {(openBooking.status === "Deposit Paid" || openBooking.status === "Confirmed") && (
                   <Section title="Refund">
                     <Button variant="destructive" size="sm" disabled={refunding}
                       onClick={() => refundBooking(openBooking.id)}>
-                      {refunding ? "Processing…" : `Refund $${openBooking.deposit_amount} deposit & cancel`}
+                      {refunding ? "Processing…" : "Refund payment & cancel"}
                     </Button>
-                    <p className="text-xs text-muted-foreground mt-2">Frees the time slot and marks the booking Cancelled.</p>
+                    <p className="text-xs text-muted-foreground mt-2">Frees the slot, refunds the customer, marks Cancelled.</p>
                   </Section>
                 )}
               </div>
