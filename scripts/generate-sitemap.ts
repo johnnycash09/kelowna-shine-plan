@@ -1,8 +1,8 @@
-// Runs after `vite build` via the postbuild npm hook; writes dist/sitemap.xml.
+// Runs before `vite dev` and `vite build` (predev/prebuild hooks); writes public/sitemap.xml.
 import { writeFileSync } from "fs";
 import { resolve } from "path";
 
-const BASE_URL = "https://kelowna-shine-plan.lovable.app";
+const BASE_URL = "https://santosautodetailing.ca";
 
 interface SitemapEntry {
   path: string;
@@ -21,6 +21,9 @@ const entries: SitemapEntry[] = [
   { path: "/fleet-detailing-kelowna", changefreq: "monthly", priority: "0.7" },
   { path: "/boat-detailing-kelowna", changefreq: "monthly", priority: "0.7" },
   { path: "/aircraft-detailing-kelowna", changefreq: "monthly", priority: "0.7" },
+  { path: "/maintenance", changefreq: "monthly", priority: "0.8" },
+  { path: "/book", changefreq: "monthly", priority: "0.7" },
+  { path: "/book/quote", changefreq: "monthly", priority: "0.6" },
 ];
 
 function generateSitemap(items: SitemapEntry[]) {
@@ -43,5 +46,5 @@ function generateSitemap(items: SitemapEntry[]) {
   ].join("\n");
 }
 
-writeFileSync(resolve("dist/sitemap.xml"), generateSitemap(entries));
+writeFileSync(resolve("public/sitemap.xml"), generateSitemap(entries));
 console.log(`sitemap.xml written (${entries.length} entries)`);

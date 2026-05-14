@@ -32,10 +32,10 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Santos Auto Detailing | Mobile Detailing, Ceramic Coating & Paint Correction in Kelowna</title>
+        <title>Santos Auto Detailing | Mobile Detailing in Kelowna</title>
         <meta
           name="description"
-          content="Santos Auto Detailing offers premium mobile detailing, interior cleaning, ceramic coating, paint correction, boat detailing, aircraft detailing, and fleet services in Kelowna and the Okanagan."
+          content="Premium mobile detailing, ceramic coating, and paint correction in Kelowna and the Okanagan. Expert care at your location."
         />
         <link rel="canonical" href={SITE_URL} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
