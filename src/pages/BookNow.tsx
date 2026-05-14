@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import { Button } from "@/components/ui/button";
 import { PACKAGES } from "@/lib/booking-config";
-import { PACKAGE_PRICE_IDS } from "@/lib/checkout-products";
 
 const BookNow = () => {
   return (
