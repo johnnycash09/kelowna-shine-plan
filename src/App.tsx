@@ -32,6 +32,7 @@ import Checkout from "./pages/Checkout.tsx";
 import CheckoutReturn from "./pages/CheckoutReturn.tsx";
 import MaintenanceBooking from "./pages/MaintenanceBooking.tsx";
 import PortalRedeem from "./pages/PortalRedeem.tsx";
+import GiftCards from "./pages/GiftCards.tsx";
 
 const queryClient = new QueryClient();
 
@@ -69,6 +70,7 @@ const App = () => (
             <Route path="/checkout/return" element={<CheckoutReturn />} />
             <Route path="/book/maintenance" element={<MaintenanceBooking />} />
             <Route path="/maintenance/portal" element={<PortalRedeem />} />
+            <Route path="/gift-cards" element={<GiftCards />} />
             <Route path="/admin" element={<AdminAuth />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
