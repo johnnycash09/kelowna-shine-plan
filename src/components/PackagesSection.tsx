@@ -3,9 +3,9 @@ import { Check } from "lucide-react";
 
 const packages = [
   {
-    name: "Signature",
+    name: "Express Full Detail",
     price: "$305",
-    tagline: "The essential reset.",
+    tagline: "Interior and exterior. Done right.",
     duration: "≈ 3–4 hrs",
     features: [
       "Hand wash & hand dry",
@@ -14,14 +14,15 @@ const packages = [
       "Glass clarified, dash dressed",
     ],
     highlight: false,
+    href: "/book/instant/express-full",
   },
   {
-    name: "Premium",
-    price: "$549",
-    tagline: "Inside out. End to end.",
+    name: "Executive Detail",
+    price: "$649",
+    tagline: "The premium experience. Inside out.",
     duration: "≈ 5–7 hrs",
     features: [
-      "Everything in Signature",
+      "Everything in Express Full Detail",
       "Clay decontamination",
       "Single-stage paint enhancement",
       "Leather clean & condition",
@@ -29,14 +30,15 @@ const packages = [
       "6-month sealant",
     ],
     highlight: true,
+    href: "/book/instant/executive",
   },
   {
-    name: "Ceramic Pro",
-    price: "$1,299+",
+    name: "Ceramic Coating",
+    price: "From $1,299",
     tagline: "Long-term protection. Lasting depth.",
     duration: "1–2 days",
     features: [
-      "Everything in Premium",
+      "Everything in Executive Detail",
       "Multi-stage paint correction",
       "Professional 9H ceramic coating",
       "7-year paint protection",
@@ -44,6 +46,7 @@ const packages = [
       "Annual maintenance check-in",
     ],
     highlight: false,
+    href: "/book/quote",
   },
 ];
 
@@ -111,7 +114,7 @@ const PackagesSection = () => {
                 ))}
               </ul>
               <a
-                href={pkg.name === "Ceramic Pro" ? "/book/quote" : "/book"}
+                href={pkg.href}
                 className={`mt-10 block w-full rounded-full py-3.5 text-center font-display text-sm font-semibold transition-all active:scale-[0.98] ${
                   pkg.highlight
                     ? "bg-foreground text-background hover:bg-accent"
