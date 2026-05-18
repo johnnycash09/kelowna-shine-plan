@@ -22,7 +22,7 @@ const packages = [
     tagline: "The premium experience. Inside out.",
     duration: "≈ 5–7 hrs",
     features: [
-      "Everything in Express Full Detail",
+      "Everything in Signature",
       "Clay decontamination",
       "Single-stage paint enhancement",
       "Leather clean & condition",
@@ -38,7 +38,7 @@ const packages = [
     tagline: "Long-term protection. Lasting depth.",
     duration: "1–2 days",
     features: [
-      "Everything in Executive Detail",
+      "Everything in Premium",
       "Multi-stage paint correction",
       "Professional 9H ceramic coating",
       "7-year paint protection",
