@@ -32,6 +32,7 @@ const entries: SitemapEntry[] = [
   { path: "/book/quote", changefreq: "monthly", priority: "0.6" },
   { path: "/gift-cards", changefreq: "monthly", priority: "0.7" },
   { path: "/fleet-accounts", changefreq: "monthly", priority: "0.7" },
+  { path: "/seasonal-detailing-kelowna", changefreq: "monthly", priority: "0.7" },
 ];
 
 function generateSitemap(items: SitemapEntry[]) {
