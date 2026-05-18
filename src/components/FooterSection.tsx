@@ -31,6 +31,21 @@ const FooterSection = () => {
                   Gift Cards
                 </Link>
               </li>
+              <li>
+                <Link to="/maintenance" className="text-muted-foreground hover:text-accent">
+                  Membership Plans
+                </Link>
+              </li>
+              <li>
+                <Link to="/seasonal-detailing-kelowna" className="text-muted-foreground hover:text-accent">
+                  Seasonal Packages
+                </Link>
+              </li>
+              <li>
+                <Link to="/fleet-accounts" className="text-muted-foreground hover:text-accent">
+                  Fleet Accounts
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -38,13 +53,13 @@ const FooterSection = () => {
           <div>
             <h4 className="font-display text-sm font-semibold uppercase tracking-wider text-muted-foreground">Service Areas</h4>
             <ul className="mt-4 space-y-2 text-sm">
-              {SERVICE_AREAS.map((a) => (
-                <li key={a}>
-                  <Link to="/auto-detailing-kelowna" className="text-muted-foreground hover:text-accent">
-                    Detailing in {a}
-                  </Link>
-                </li>
-              ))}
+              <li><Link to="/auto-detailing-kelowna" className="text-muted-foreground hover:text-accent">Detailing in Kelowna</Link></li>
+              <li><Link to="/auto-detailing-west-kelowna" className="text-muted-foreground hover:text-accent">Detailing in West Kelowna</Link></li>
+              <li><Link to="/auto-detailing-vernon" className="text-muted-foreground hover:text-accent">Detailing in Vernon</Link></li>
+              <li><Link to="/auto-detailing-penticton" className="text-muted-foreground hover:text-accent">Detailing in Penticton</Link></li>
+              <li><span className="text-muted-foreground">Detailing in Lake Country</span></li>
+              <li><span className="text-muted-foreground">Detailing in Summerland</span></li>
+              <li><span className="text-muted-foreground">Detailing in Peachland</span></li>
             </ul>
           </div>
 
