@@ -111,7 +111,7 @@ const PackagesSection = () => {
                 ))}
               </ul>
               <a
-                href="#contact"
+                href={pkg.name === "Ceramic Pro" ? "/book/quote" : "/book"}
                 className={`mt-10 block w-full rounded-full py-3.5 text-center font-display text-sm font-semibold transition-all active:scale-[0.98] ${
                   pkg.highlight
                     ? "bg-foreground text-background hover:bg-accent"
