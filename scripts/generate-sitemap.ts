@@ -19,6 +19,7 @@ const entries: SitemapEntry[] = [
   { path: "/ceramic-coating-kelowna", changefreq: "monthly", priority: "0.9" },
   { path: "/paint-correction-kelowna", changefreq: "monthly", priority: "0.9" },
   { path: "/ppf-kelowna", changefreq: "monthly", priority: "0.9" },
+  { path: "/rv-detailing-kelowna", changefreq: "monthly", priority: "0.8" },
   { path: "/fleet-detailing-kelowna", changefreq: "monthly", priority: "0.7" },
   { path: "/boat-detailing-kelowna", changefreq: "monthly", priority: "0.7" },
   { path: "/aircraft-detailing-kelowna", changefreq: "monthly", priority: "0.7" },

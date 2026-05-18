@@ -31,6 +31,7 @@ export const ALL_SERVICES = [
   { slug: "/paint-correction-kelowna", title: "Paint Correction", short: "Restore true gloss" },
   { slug: "/ceramic-coating-kelowna", title: "Ceramic Coating", short: "Long-term protection" },
   { slug: "/ppf-kelowna", title: "Paint Protection Film", short: "Rock chip defence" },
+  { slug: "/rv-detailing-kelowna", title: "RV Detailing", short: "Motorhome & trailer care" },
   { slug: "/fleet-detailing-kelowna", title: "Fleet Detailing", short: "Business vehicles" },
   { slug: "/boat-detailing-kelowna", title: "Boat Detailing", short: "Marine care" },
   { slug: "/aircraft-detailing-kelowna", title: "Aircraft Detailing", short: "Private aviation" },
