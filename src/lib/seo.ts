@@ -1,4 +1,4 @@
-export const SITE_URL = "https://kelowna-shine-plan.lovable.app";
+export const SITE_URL = "https://santosautodetailing.ca";
 export const PHONE = "+12508627491";
 export const PHONE_DISPLAY = "(250) 862-7491";
 export const EMAIL = "pay@santosautodetailing.ca";
