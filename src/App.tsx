@@ -10,6 +10,7 @@ import InteriorDetailing from "./pages/services/InteriorDetailing.tsx";
 import ExteriorDetailing from "./pages/services/ExteriorDetailing.tsx";
 import CeramicCoating from "./pages/services/CeramicCoating.tsx";
 import PaintCorrection from "./pages/services/PaintCorrection.tsx";
+import PPFKelowna from "./pages/services/PPFKelowna.tsx";
 import FleetDetailing from "./pages/services/FleetDetailing.tsx";
 import BoatDetailing from "./pages/services/BoatDetailing.tsx";
 import AircraftDetailing from "./pages/services/AircraftDetailing.tsx";
@@ -43,6 +44,7 @@ const App = () => (
             <Route path="/exterior-detailing-kelowna" element={<ExteriorDetailing />} />
             <Route path="/ceramic-coating-kelowna" element={<CeramicCoating />} />
             <Route path="/paint-correction-kelowna" element={<PaintCorrection />} />
+            <Route path="/ppf-kelowna" element={<PPFKelowna />} />
             <Route path="/fleet-detailing-kelowna" element={<FleetDetailing />} />
             <Route path="/boat-detailing-kelowna" element={<BoatDetailing />} />
             <Route path="/aircraft-detailing-kelowna" element={<AircraftDetailing />} />
