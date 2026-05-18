@@ -18,6 +18,9 @@ const imageMap: Record<string, string> = {
   "/fleet-detailing-kelowna": fleetImg,
   "/boat-detailing-kelowna": boatImg,
   "/aircraft-detailing-kelowna": aircraftImg,
+  "/ppf-kelowna": correctionImg,
+  "/rv-detailing-kelowna": fleetImg,
+  "/ceramic-coating-boat-kelowna": boatImg,
 };
 
 const altMap: Record<string, string> = {
@@ -28,6 +31,9 @@ const altMap: Record<string, string> = {
   "/fleet-detailing-kelowna": "Fleet detailing for company vehicles in Kelowna",
   "/boat-detailing-kelowna": "Boat detailing and polishing in the Okanagan",
   "/aircraft-detailing-kelowna": "Aircraft detailing for private jet in Kelowna",
+  "/ppf-kelowna": "Paint protection film installation in Kelowna",
+  "/rv-detailing-kelowna": "RV and motorhome detailing in Kelowna Okanagan",
+  "/ceramic-coating-boat-kelowna": "Ceramic coating for boat gel coat in Kelowna",
 };
 
 const transition = { type: "spring" as const, duration: 0.6, bounce: 0 };
