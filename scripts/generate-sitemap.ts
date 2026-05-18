@@ -13,6 +13,7 @@ interface SitemapEntry {
 const entries: SitemapEntry[] = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
   { path: "/auto-detailing-kelowna", changefreq: "weekly", priority: "0.9" },
+  { path: "/auto-detailing-west-kelowna", changefreq: "monthly", priority: "0.8" },
   { path: "/mobile-detailing-kelowna", changefreq: "weekly", priority: "0.9" },
   { path: "/interior-detailing-kelowna", changefreq: "monthly", priority: "0.8" },
   { path: "/exterior-detailing-kelowna", changefreq: "monthly", priority: "0.8" },

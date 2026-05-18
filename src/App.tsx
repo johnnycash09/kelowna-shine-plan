@@ -17,6 +17,7 @@ import FleetDetailing from "./pages/services/FleetDetailing.tsx";
 import BoatDetailing from "./pages/services/BoatDetailing.tsx";
 import AircraftDetailing from "./pages/services/AircraftDetailing.tsx";
 import KelownaLocation from "./pages/locations/KelownaLocation.tsx";
+import WestKelownaLocation from "./pages/locations/WestKelownaLocation.tsx";
 import BookNow from "./pages/BookNow.tsx";
 import InstantBooking from "./pages/InstantBooking.tsx";
 import CustomQuote from "./pages/CustomQuote.tsx";
@@ -53,6 +54,7 @@ const App = () => (
             <Route path="/boat-detailing-kelowna" element={<BoatDetailing />} />
             <Route path="/aircraft-detailing-kelowna" element={<AircraftDetailing />} />
             <Route path="/auto-detailing-kelowna" element={<KelownaLocation />} />
+            <Route path="/auto-detailing-west-kelowna" element={<WestKelownaLocation />} />
             <Route path="/book" element={<BookNow />} />
             <Route path="/book/instant/:slug" element={<InstantBooking />} />
             <Route path="/book/quote" element={<CustomQuote />} />
