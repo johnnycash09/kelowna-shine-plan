@@ -43,7 +43,7 @@ export const localBusinessSchema = {
   "@type": "AutoDetailing",
   name: "Santos Auto Detailing",
   description:
-    "Premium mobile auto detailing, ceramic coating, paint correction, boat, fleet and aircraft detailing in Kelowna and the Okanagan.",
+    "Premium mobile auto detailing, ceramic coating, PPF, paint correction, RV, boat, fleet and aircraft detailing in Kelowna and the Okanagan.",
   url: SITE_URL,
   telephone: PHONE,
   email: EMAIL,
