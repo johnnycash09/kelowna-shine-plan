@@ -26,6 +26,11 @@ const FooterSection = () => {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link to="/gift-cards" className="text-muted-foreground hover:text-accent">
+                  Gift Cards
+                </Link>
+              </li>
             </ul>
           </div>
 
