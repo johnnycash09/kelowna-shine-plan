@@ -32,10 +32,10 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Santos Auto Detailing | Mobile Detailing in Kelowna</title>
+        <title>Santos Auto Detailing | Ceramic Coating &amp; Mobile Detailing Kelowna BC</title>
         <meta
           name="description"
-          content="Premium mobile detailing, ceramic coating, and paint correction in Kelowna and the Okanagan. Expert care at your location."
+          content="Kelowna's top-rated mobile detailing, ceramic coating, PPF and paint correction. 5.0 stars across 140+ Google reviews. Serving Kelowna and the Okanagan."
         />
         <link rel="canonical" href={SITE_URL} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,6 +43,7 @@ const Index = () => {
         <meta property="og:description" content="Premium mobile detailing, ceramic coating and paint correction in Kelowna and the Okanagan." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={SITE_URL} />
+        <meta property="og:image" content="https://santosautodetailing.ca/og-image.jpg" />
         <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema(HOMEPAGE_FAQS))}</script>
       </Helmet>

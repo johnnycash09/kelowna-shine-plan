@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const marques = ["PORSCHE", "TESLA", "BMW", "MERCEDES", "AUDI", "LEXUS"];
+const marques = ["PORSCHE", "TESLA", "BMW", "MERCEDES", "MARINE", "AVIATION", "FLEET", "LEXUS"];
 
 const TrustStrip = () => {
   return (
