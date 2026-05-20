@@ -214,10 +214,10 @@ const ServicePageLayout = (p: ServicePageProps) => {
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link
-                to="/book"
+                to={bookingHref}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-10 py-4 font-display text-base font-semibold text-background hover:bg-accent"
               >
-                Book Now
+                {bookingLabel}
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a
