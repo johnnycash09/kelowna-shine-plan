@@ -38,13 +38,13 @@ const FinalCTASection = () => {
         </p>
 
         <div className="mt-12 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-          <a
-            href="/book"
+          <Link
+            to="/book"
             className="group inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-10 py-4 font-display text-base font-semibold text-background transition-all active:scale-[0.98] hover:bg-accent"
           >
             Book Now
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </a>
+          </Link>
           <a
             href={`tel:${PHONE}`}
             className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background/40 px-10 py-4 font-display text-base font-medium text-foreground backdrop-blur-md transition-colors hover:bg-secondary"
