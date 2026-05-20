@@ -19,13 +19,13 @@ const StickyMobileCTA = () => {
         <MessageSquare className="h-4 w-4 text-accent" />
         Text
       </a>
-      <a
-        href="/book"
+      <Link
+        to="/book"
         className="flex items-center justify-center gap-2 bg-foreground py-3 font-display text-xs font-semibold text-background"
       >
         <Calendar className="h-4 w-4" />
         Book
-      </a>
+      </Link>
     </div>
   );
 };
