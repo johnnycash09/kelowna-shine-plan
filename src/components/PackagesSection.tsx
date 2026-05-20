@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Check } from "lucide-react";
 
 const packages = [
@@ -113,8 +114,8 @@ const PackagesSection = () => {
                   </li>
                 ))}
               </ul>
-              <a
-                href={pkg.href}
+              <Link
+                to={pkg.href}
                 className={`mt-10 block w-full rounded-full py-3.5 text-center font-display text-sm font-semibold transition-all active:scale-[0.98] ${
                   pkg.highlight
                     ? "bg-foreground text-background hover:bg-accent"
@@ -122,7 +123,7 @@ const PackagesSection = () => {
                 }`}
               >
                 Book {pkg.name}
-              </a>
+              </Link>
             </motion.div>
           ))}
         </div>

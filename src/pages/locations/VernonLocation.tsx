@@ -64,12 +64,12 @@ const VernonLocation = () => (
             Santos Auto Detailing brings premium mobile detailing and ceramic coating programs to Vernon and the North Okanagan — Coldstream, Bella Vista, BX and beyond. Book mobile service at your home or storage site.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <a
-              href="/book"
+            <Link
+              to="/book"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-8 py-4 font-display text-base font-semibold text-background hover:bg-accent"
             >
               Book Now <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
             <a
               href={`tel:${PHONE}`}
               className="inline-flex items-center justify-center gap-2 rounded-full border border-border px-8 py-4 font-display text-base font-medium text-foreground hover:bg-secondary"

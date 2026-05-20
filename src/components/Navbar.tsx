@@ -137,18 +137,18 @@ const Navbar = () => {
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
-          <a
-            href="/book/quote"
+          <Link
+            to="/book/quote"
             className="hidden rounded-full border border-border px-5 py-2.5 font-display text-sm font-medium text-foreground transition-all hover:border-accent hover:text-accent md:inline-flex"
           >
             Get a Quote
-          </a>
-          <a
-            href="/book"
+          </Link>
+          <Link
+            to="/book"
             className="hidden rounded-full bg-foreground px-5 py-2.5 font-display text-sm font-semibold text-background transition-all hover:bg-accent md:inline-flex"
           >
             Book Now
-          </a>
+          </Link>
         </div>
 
         <button
@@ -195,20 +195,20 @@ const Navbar = () => {
             >
               Reviews
             </a>
-            <a
-              href="/book/quote"
+            <Link
+              to="/book/quote"
               onClick={() => setOpen(false)}
               className="mt-2 font-display text-base text-accent"
             >
               Get a Quote
-            </a>
-            <a
-              href="/book"
+            </Link>
+            <Link
+              to="/book"
               onClick={() => setOpen(false)}
               className="mt-2 block rounded-full bg-foreground py-3.5 text-center font-display text-sm font-semibold text-background"
             >
               Book Now
-            </a>
+            </Link>
           </div>
         </div>
       )}
