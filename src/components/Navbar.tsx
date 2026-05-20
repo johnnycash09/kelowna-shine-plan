@@ -195,20 +195,20 @@ const Navbar = () => {
             >
               Reviews
             </a>
-            <a
-              href="/book/quote"
+            <Link
+              to="/book/quote"
               onClick={() => setOpen(false)}
               className="mt-2 font-display text-base text-accent"
             >
               Get a Quote
-            </a>
-            <a
-              href="/book"
+            </Link>
+            <Link
+              to="/book"
               onClick={() => setOpen(false)}
               className="mt-2 block rounded-full bg-foreground py-3.5 text-center font-display text-sm font-semibold text-background"
             >
               Book Now
-            </a>
+            </Link>
           </div>
         </div>
       )}
