@@ -36,6 +36,8 @@ export interface ServicePageProps {
 
 const ServicePageLayout = (p: ServicePageProps) => {
   const canonical = `${SITE_URL}${p.slug}`;
+  const bookingHref = p.bookingHref ?? "/book";
+  const bookingLabel = p.bookingLabel ?? "Book Now";
   const related = ALL_SERVICES.filter((s) => s.slug !== p.slug).slice(0, 3);
 
   return (
