@@ -30,10 +30,14 @@ export interface ServicePageProps {
   faqs: { q: string; a: string }[];
   imageAlt: string;
   heroImage?: string;
+  bookingHref?: string;
+  bookingLabel?: string;
 }
 
 const ServicePageLayout = (p: ServicePageProps) => {
   const canonical = `${SITE_URL}${p.slug}`;
+  const bookingHref = p.bookingHref ?? "/book";
+  const bookingLabel = p.bookingLabel ?? "Book Now";
   const related = ALL_SERVICES.filter((s) => s.slug !== p.slug).slice(0, 3);
 
   return (
@@ -94,10 +98,10 @@ const ServicePageLayout = (p: ServicePageProps) => {
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link
-                to="/book"
+                to={bookingHref}
                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-8 py-4 font-display text-base font-semibold text-background transition-all hover:bg-accent active:scale-[0.98]"
               >
-                Book Now
+                {bookingLabel}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <a
@@ -210,10 +214,10 @@ const ServicePageLayout = (p: ServicePageProps) => {
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link
-                to="/book"
+                to={bookingHref}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-10 py-4 font-display text-base font-semibold text-background hover:bg-accent"
               >
-                Book Now
+                {bookingLabel}
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a

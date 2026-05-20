@@ -3,6 +3,8 @@ import img from "@/assets/service-boat.jpg";
 
 const MarineCeramicCoating = () => (
   <ServicePageLayout
+    bookingHref="/book/quote"
+    bookingLabel="Get a Quote"
     slug="/ceramic-coating-boat-kelowna"
     title="Boat Ceramic Coating Kelowna | Marine Ceramic Coating | Santos"
     metaDescription="Professional ceramic coating for boats and watercraft in Kelowna. Gel coat protection, hydrophobic finish and UV defence for Okanagan Lake vessels."

@@ -3,6 +3,8 @@ import img from "@/assets/service-correction.jpg";
 
 const PPFKelowna = () => (
   <ServicePageLayout
+    bookingHref="/book/quote"
+    bookingLabel="Get a Quote"
     slug="/ppf-kelowna"
     title="Paint Protection Film Kelowna | PPF Installation | Santos Auto Detailing"
     metaDescription="Professional paint protection film installation in Kelowna. Self-healing PPF for hoods, bumpers, full wraps and high-impact zones. Santos Auto Detailing."

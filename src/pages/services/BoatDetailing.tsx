@@ -3,6 +3,8 @@ import img from "@/assets/service-boat.jpg";
 
 const BoatDetailing = () => (
   <ServicePageLayout
+    bookingHref="/book/quote"
+    bookingLabel="Get a Quote"
     slug="/boat-detailing-kelowna"
     title="Boat Detailing Kelowna | Santos Auto Detailing"
     metaDescription="Professional boat detailing in Kelowna and the Okanagan, including wash, wax, oxidation removal, polishing, and interior cleaning."

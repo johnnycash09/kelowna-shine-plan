@@ -3,6 +3,8 @@ import img from "@/assets/service-fleet.jpg";
 
 const RVDetailing = () => (
   <ServicePageLayout
+    bookingHref="/book/quote"
+    bookingLabel="Get a Quote"
     slug="/rv-detailing-kelowna"
     title="RV Detailing Kelowna | Motorhome & Trailer Detailing | Santos"
     metaDescription="Professional RV, motorhome and travel trailer detailing in Kelowna and the Okanagan. Oxidation removal, roof cleaning, interior detail and ceramic coating."

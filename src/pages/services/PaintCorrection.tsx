@@ -3,6 +3,8 @@ import img from "@/assets/service-correction.jpg";
 
 const PaintCorrection = () => (
   <ServicePageLayout
+    bookingHref="/book/quote"
+    bookingLabel="Get a Quote"
     slug="/paint-correction-kelowna"
     title="Paint Correction Kelowna | Santos Auto Detailing"
     metaDescription="Restore gloss and remove swirl marks, oxidation, haze, and light defects with professional paint correction in Kelowna."

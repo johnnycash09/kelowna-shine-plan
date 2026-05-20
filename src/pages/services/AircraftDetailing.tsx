@@ -3,6 +3,8 @@ import img from "@/assets/service-aircraft.jpg";
 
 const AircraftDetailing = () => (
   <ServicePageLayout
+    bookingHref="/book/quote"
+    bookingLabel="Get a Quote"
     slug="/aircraft-detailing-kelowna"
     title="Aircraft Detailing Kelowna | Private Jet Detailing | Santos"
     metaDescription="Premium aircraft and private jet detailing in Kelowna and the Okanagan, including paint polishing, interior care, and luxury aviation detailing."
