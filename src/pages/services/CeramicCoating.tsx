@@ -3,6 +3,8 @@ import img from "@/assets/service-ceramic.jpg";
 
 const CeramicCoating = () => (
   <ServicePageLayout
+    bookingHref="/book/quote"
+    bookingLabel="Get a Quote"
     slug="/ceramic-coating-kelowna"
     title="Ceramic Coating Kelowna | Santos Auto Detailing"
     metaDescription="Protect your vehicle with professional ceramic coating in Kelowna. Premium gloss, long-term protection, and expert installation by Santos Auto Detailing."
