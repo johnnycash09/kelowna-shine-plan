@@ -30,6 +30,8 @@ export interface ServicePageProps {
   faqs: { q: string; a: string }[];
   imageAlt: string;
   heroImage?: string;
+  bookingHref?: string;
+  bookingLabel?: string;
 }
 
 const ServicePageLayout = (p: ServicePageProps) => {
