@@ -93,13 +93,13 @@ const ServicePageLayout = (p: ServicePageProps) => {
               {p.intro}
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a
-                href="/book"
+              <Link
+                to="/book"
                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-8 py-4 font-display text-base font-semibold text-background transition-all hover:bg-accent active:scale-[0.98]"
               >
                 Book Now
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
+              </Link>
               <a
                 href={`tel:${PHONE}`}
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background/40 px-8 py-4 font-display text-base font-medium text-foreground backdrop-blur-md hover:bg-secondary"
