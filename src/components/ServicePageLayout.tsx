@@ -209,13 +209,13 @@ const ServicePageLayout = (p: ServicePageProps) => {
               Premium results, mobile convenience, and a team that treats every vehicle like its own.
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <a
-                href="/book"
+              <Link
+                to="/book"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-10 py-4 font-display text-base font-semibold text-background hover:bg-accent"
               >
                 Book Now
                 <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
               <a
                 href={`tel:${PHONE}`}
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-border px-10 py-4 font-display text-base font-medium text-foreground hover:bg-secondary"
