@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowRight, Phone, MessageSquare } from "lucide-react";
 import ceramicImg from "@/assets/cta-background.jpg";
 import { PHONE, PHONE_DISPLAY } from "@/lib/seo";
