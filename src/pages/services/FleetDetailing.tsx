@@ -3,6 +3,8 @@ import img from "@/assets/service-fleet.jpg";
 
 const FleetDetailing = () => (
   <ServicePageLayout
+    bookingHref="/book/quote"
+    bookingLabel="Get a Quote"
     slug="/fleet-detailing-kelowna"
     title="Fleet Detailing Kelowna | Santos Auto Detailing"
     metaDescription="Reliable fleet detailing in Kelowna and the Okanagan for business vehicles, work trucks, dealership vehicles, and company fleets."
