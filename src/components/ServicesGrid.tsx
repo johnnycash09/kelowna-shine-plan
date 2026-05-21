@@ -9,6 +9,7 @@ import ceramicImg from "@/assets/service-ceramic.jpg";
 import aircraftImg from "@/assets/service-aircraft.jpg";
 import fleetImg from "@/assets/service-fleet.jpg";
 import boatImg from "@/assets/service-boat.jpg";
+import ppfImg from "@/assets/service-ppf.jpg";
 
 const imageMap: Record<string, string> = {
   "/interior-detailing-kelowna": interiorImg,
