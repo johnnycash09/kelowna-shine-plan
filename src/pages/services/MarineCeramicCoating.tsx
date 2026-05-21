@@ -1,10 +1,18 @@
 import ServicePageLayout from "@/components/ServicePageLayout";
 import img from "@/assets/service-boat.jpg";
+import revivifyLogo from "@/assets/revivify-logo.png";
 
 const MarineCeramicCoating = () => (
   <ServicePageLayout
     bookingHref="/book/quote"
     bookingLabel="Get a Quote"
+    partner={{
+      name: "Revivify",
+      logo: revivifyLogo,
+      href: "https://revivifycoatings.com",
+      blurb:
+        "We're an authorized Revivify installer — a globally recognized professional ceramic coating system engineered for exceptional gloss, hydrophobics and multi-year durability, including marine-grade applications for gel coat and painted topsides.",
+    }}
     slug="/ceramic-coating-boat-kelowna"
     title="Boat Ceramic Coating Kelowna | Marine Ceramic Coating | Santos"
     metaDescription="Professional ceramic coating for boats and watercraft in Kelowna. Gel coat protection, hydrophobic finish and UV defence for Okanagan Lake vessels."
