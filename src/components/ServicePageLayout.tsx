@@ -32,6 +32,7 @@ export interface ServicePageProps {
   heroImage?: string;
   bookingHref?: string;
   bookingLabel?: string;
+  partner?: { name: string; logo: string; blurb: string; href?: string };
 }
 
 const ServicePageLayout = (p: ServicePageProps) => {
@@ -154,6 +155,44 @@ const ServicePageLayout = (p: ServicePageProps) => {
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground">{p.why.body}</p>
           </div>
         </section>
+
+        {p.partner && (
+          <section className="border-b border-border bg-background py-16 md:py-20">
+            <div className="container max-w-4xl">
+              <div className="flex flex-col items-center gap-8 rounded-lg border border-border bg-card/50 p-8 text-center md:flex-row md:items-center md:gap-12 md:p-12 md:text-left">
+                <div className="flex shrink-0 items-center justify-center md:w-64">
+                  <img
+                    src={p.partner.logo}
+                    alt={`${p.partner.name} logo`}
+                    className="h-16 w-auto object-contain md:h-20"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="flex-1">
+                  <p className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-accent">
+                    Official Partner
+                  </p>
+                  <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+                    Proudly partnered with {p.partner.name}
+                  </h2>
+                  <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                    {p.partner.blurb}
+                  </p>
+                  {p.partner.href && (
+                    <a
+                      href={p.partner.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-accent hover:underline"
+                    >
+                      Learn more <ArrowRight className="h-3 w-3" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
 
         <ServiceAreasSection />
 
