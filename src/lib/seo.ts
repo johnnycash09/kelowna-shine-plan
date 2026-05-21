@@ -76,20 +76,36 @@ export const localBusinessSchema = {
     bestRating: "5",
     worstRating: "1",
   },
-  review: {
-    "@type": "Review",
-    reviewRating: {
-      "@type": "Rating",
-      ratingValue: "5",
-      bestRating: "5",
+  review: [
+    {
+      "@type": "Review",
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: "5",
+        bestRating: "5",
+      },
+      author: {
+        "@type": "Person",
+        name: "Michael R.",
+      },
+      reviewBody:
+        "Santos detailed my truck and the ceramic coating looks absolutely flawless. Most professional detailer in Kelowna by far.",
     },
-    author: {
-      "@type": "Person",
-      name: "Kelowna Vehicle Owner",
+    {
+      "@type": "Review",
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: "5",
+        bestRating: "5",
+      },
+      author: {
+        "@type": "Person",
+        name: "Sarah L.",
+      },
+      reviewBody:
+        "Had my boat detailed before summer and the gel coat looks brand new. Santos came to our dock — incredible service.",
     },
-    reviewBody:
-      "Santos detailed my truck and the results were incredible. Professional, on time, and the ceramic coating looks flawless. Best detailing in Kelowna.",
-  },
+  ],
 };
 
 export const serviceSchema = (name: string, description: string, slug: string) => ({
