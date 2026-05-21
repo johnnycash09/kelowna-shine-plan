@@ -39,6 +39,7 @@ import CeramicCoatingGuide from "./pages/blog/CeramicCoatingGuide.tsx";
 import PaintCorrectionGuide from "./pages/blog/PaintCorrectionGuide.tsx";
 import MobileDetailingGuide from "./pages/blog/MobileDetailingGuide.tsx";
 import BoatDetailingGuide from "./pages/blog/BoatDetailingGuide.tsx";
+import Blog from "./pages/Blog.tsx";
 
 const queryClient = new QueryClient();
 
