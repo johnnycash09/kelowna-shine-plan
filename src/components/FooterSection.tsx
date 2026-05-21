@@ -46,6 +46,11 @@ const FooterSection = () => {
                   Fleet Accounts
                 </Link>
               </li>
+              <li>
+                <Link to="/blog" className="text-muted-foreground hover:text-accent">
+                  Blog
+                </Link>
+              </li>
             </ul>
           </div>
 

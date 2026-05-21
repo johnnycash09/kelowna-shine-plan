@@ -39,6 +39,7 @@ import CeramicCoatingGuide from "./pages/blog/CeramicCoatingGuide.tsx";
 import PaintCorrectionGuide from "./pages/blog/PaintCorrectionGuide.tsx";
 import MobileDetailingGuide from "./pages/blog/MobileDetailingGuide.tsx";
 import BoatDetailingGuide from "./pages/blog/BoatDetailingGuide.tsx";
+import Blog from "./pages/Blog.tsx";
 
 const queryClient = new QueryClient();
 
@@ -79,6 +80,7 @@ const App = () => (
             <Route path="/gift-cards" element={<GiftCards />} />
             <Route path="/fleet-accounts" element={<FleetAccounts />} />
             <Route path="/seasonal-detailing-kelowna" element={<SeasonalPackages />} />
+            <Route path="/blog" element={<Blog />} />
             <Route path="/blog/ceramic-coating-kelowna-guide" element={<CeramicCoatingGuide />} />
             <Route path="/blog/paint-correction-kelowna" element={<PaintCorrectionGuide />} />
             <Route path="/blog/mobile-detailing-kelowna" element={<MobileDetailingGuide />} />
