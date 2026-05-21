@@ -37,7 +37,7 @@ const Index = () => {
           name="description"
           content="Kelowna's top-rated mobile detailing, ceramic coating, PPF and paint correction. 5.0 stars across 140+ Google reviews. Serving Kelowna and the Okanagan."
         />
-        <link rel="canonical" href={SITE_URL} />
+        <link rel="canonical" href={`${SITE_URL}/`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:title" content="Santos Auto Detailing | Premium Mobile Detailing in Kelowna" />
         <meta property="og:description" content="Premium mobile detailing, ceramic coating and paint correction in Kelowna and the Okanagan." />
