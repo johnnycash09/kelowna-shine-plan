@@ -73,6 +73,22 @@ export const localBusinessSchema = {
     "@type": "AggregateRating",
     ratingValue: "5.0",
     reviewCount: "140",
+    bestRating: "5",
+    worstRating: "1",
+  },
+  review: {
+    "@type": "Review",
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: "5",
+      bestRating: "5",
+    },
+    author: {
+      "@type": "Person",
+      name: "Kelowna Vehicle Owner",
+    },
+    reviewBody:
+      "Santos detailed my truck and the results were incredible. Professional, on time, and the ceramic coating looks flawless. Best detailing in Kelowna.",
   },
 };
 
