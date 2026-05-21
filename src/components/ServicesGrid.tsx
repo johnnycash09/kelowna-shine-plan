@@ -9,6 +9,7 @@ import ceramicImg from "@/assets/service-ceramic.jpg";
 import aircraftImg from "@/assets/service-aircraft.jpg";
 import fleetImg from "@/assets/service-fleet.jpg";
 import boatImg from "@/assets/service-boat.jpg";
+import ppfImg from "@/assets/service-ppf.jpg";
 
 const imageMap: Record<string, string> = {
   "/interior-detailing-kelowna": interiorImg,
@@ -18,7 +19,7 @@ const imageMap: Record<string, string> = {
   "/fleet-detailing-kelowna": fleetImg,
   "/boat-detailing-kelowna": boatImg,
   "/aircraft-detailing-kelowna": aircraftImg,
-  "/ppf-kelowna": correctionImg,
+  "/ppf-kelowna": ppfImg,
   "/rv-detailing-kelowna": fleetImg,
   "/ceramic-coating-boat-kelowna": boatImg,
 };
