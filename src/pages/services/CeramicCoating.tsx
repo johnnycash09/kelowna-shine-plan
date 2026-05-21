@@ -1,10 +1,18 @@
 import ServicePageLayout from "@/components/ServicePageLayout";
 import img from "@/assets/service-ceramic.jpg";
+import revivifyLogo from "@/assets/revivify-logo.png";
 
 const CeramicCoating = () => (
   <ServicePageLayout
     bookingHref="/book/quote"
     bookingLabel="Get a Quote"
+    partner={{
+      name: "Revivify",
+      logo: revivifyLogo,
+      href: "https://revivifycoatings.com",
+      blurb:
+        "We're an authorized Revivify installer — a globally recognized professional ceramic coating system engineered for exceptional gloss, hydrophobics and multi-year durability. Every coating we install is backed by Revivify's professional-grade chemistry and our certified application process.",
+    }}
     slug="/ceramic-coating-kelowna"
     title="Ceramic Coating Kelowna | Santos Auto Detailing"
     metaDescription="Protect your vehicle with professional ceramic coating in Kelowna. Premium gloss, long-term protection, and expert installation by Santos Auto Detailing."
