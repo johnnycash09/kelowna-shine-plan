@@ -40,7 +40,7 @@ export const ALL_SERVICES = [
 
 export const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "AutoDetailing",
+  "@type": "LocalBusiness",
   name: "Santos Auto Detailing",
   description:
     "Premium mobile auto detailing, ceramic coating, PPF, paint correction, RV, boat, fleet and aircraft detailing in Kelowna and the Okanagan.",
