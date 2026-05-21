@@ -19,7 +19,7 @@ const imageMap: Record<string, string> = {
   "/fleet-detailing-kelowna": fleetImg,
   "/boat-detailing-kelowna": boatImg,
   "/aircraft-detailing-kelowna": aircraftImg,
-  "/ppf-kelowna": correctionImg,
+  "/ppf-kelowna": ppfImg,
   "/rv-detailing-kelowna": fleetImg,
   "/ceramic-coating-boat-kelowna": boatImg,
 };
