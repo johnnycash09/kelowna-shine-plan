@@ -20,7 +20,7 @@ const CeramicCoating = () => (
     eyebrow="Protection · Kelowna"
     serviceName="Ceramic Coating"
     serviceDescription="Professional ceramic coating installation with paint correction prep for vehicles in Kelowna and the Okanagan."
-    intro="A long-term protective layer for your paint — engineered for gloss, hydrophobics, and chemical resistance. Installed in-shop with the prep that makes the difference."
+    intro="Kelowna gets over 2,000 hours of sun per year — among the highest in Canada. That UV load fades paint, oxidizes clear coat, and ages an unprotected vehicle fast. Santos Auto Detailing is a certified Revivify applicator and certified Victoria Car Care installer — two professional certifications that most Kelowna detailers don't hold. We install ceramic coating on vehicles, boats, RVs and aircraft across the Okanagan."
     imageAlt="Ceramic coating application on luxury vehicle in Kelowna"
     heroImage={img}
     bullets={[
