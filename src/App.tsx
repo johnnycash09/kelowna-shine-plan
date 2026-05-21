@@ -37,6 +37,7 @@ import FleetAccounts from "./pages/FleetAccounts.tsx";
 import SeasonalPackages from "./pages/SeasonalPackages.tsx";
 import CeramicCoatingGuide from "./pages/blog/CeramicCoatingGuide.tsx";
 import PaintCorrectionGuide from "./pages/blog/PaintCorrectionGuide.tsx";
+import MobileDetailingGuide from "./pages/blog/MobileDetailingGuide.tsx";
 
 const queryClient = new QueryClient();
 
