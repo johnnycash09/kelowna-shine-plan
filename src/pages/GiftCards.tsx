@@ -38,6 +38,12 @@ const GiftCards = () => {
           content="Give the gift of a premium detail. Santos Auto Detailing gift cards are perfect for executives, clients, car lovers and corporate gifting across Kelowna and the Okanagan."
         />
         <link rel="canonical" href={`${SITE_URL}/gift-cards`} />
+        <meta property="og:title" content="Gift Cards | Santos Auto Detailing Kelowna" />
+        <meta property="og:description" content="Give the gift of a premium detail. Santos Auto Detailing gift cards are perfect for executives, clients, car lovers and corporate gifting across Kelowna and the Okanagan." />
+        <meta property="og:url" content={`${SITE_URL}/gift-cards`} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="Gift Cards | Santos Auto Detailing Kelowna" />
+        <meta name="twitter:description" content="Give the gift of a premium detail. Santos Auto Detailing gift cards are perfect for executives, clients, car lovers and corporate gifting across Kelowna and the Okanagan." />
       </Helmet>
       <Navbar />
 
