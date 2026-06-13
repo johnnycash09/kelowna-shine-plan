@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
-import { MessageSquare, Calendar } from "lucide-react";
+import { MessageSquare, Calendar, Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
@@ -14,17 +14,89 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const SQUARE_BOOK_URL =
   "https://app.squareup.com/appointments/book/x1rm8kityedh45/LYPG9JNDGAE21/start";
 
+const SERVICE_LABELS: Record<string, string> = {
+  "full-detail": "Full Detail",
+  "ceramic-coating": "Ceramic Coating",
+  "paint-correction": "Paint Correction",
+  "interior-odor": "Interior & Odor Removal",
+  "rv-marine": "RV & Marine",
+  "not-sure": "Not Sure",
+};
+
 const BookNow = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [service, setService] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (submitting) return;
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get("name") || "").trim();
+    const phone = String(data.get("phone") || "").trim();
+    const email = String(data.get("email") || "").trim();
+    const vehicle = String(data.get("vehicle") || "").trim();
+    const photo = data.get("photo") as File | null;
+
+    if (!name || !phone || !email || !service) {
+      toast.error("Please fill in name, phone, email and service.");
+      return;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const photo_urls: string[] = [];
+      if (photo && photo.size > 0) {
+        const ext = photo.name.split(".").pop() || "jpg";
+        const path = `${crypto.randomUUID()}.${ext}`;
+        const { error: upErr } = await supabase.storage
+          .from("quote-photos")
+          .upload(path, photo, { contentType: photo.type || undefined });
+        if (upErr) throw upErr;
+        const { data: pub } = supabase.storage
+          .from("quote-photos")
+          .getPublicUrl(path);
+        if (pub?.publicUrl) photo_urls.push(pub.publicUrl);
+      }
+
+      // Parse vehicle "year make model"
+      const parts = vehicle.split(/\s+/);
+      const vehicle_year = parts[0] || null;
+      const vehicle_make = parts[1] || null;
+      const vehicle_model = parts.slice(2).join(" ") || null;
+
+      const { error } = await supabase.from("quote_requests").insert({
+        name,
+        phone,
+        email,
+        service_needed: SERVICE_LABELS[service] || service,
+        vehicle_year,
+        vehicle_make,
+        vehicle_model,
+        notes: vehicle ? `Vehicle: ${vehicle}` : null,
+        photo_urls,
+      });
+      if (error) throw error;
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error(err);
+      toast.error("Something went wrong. Please text us at (250) 862-7491.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -133,11 +205,15 @@ const BookNow = () => {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
                     <Label htmlFor="name">Name</Label>
-                    <Input id="name" name="name" required className="mt-2" />
+                    <Input id="name" name="name" required maxLength={120} className="mt-2" />
                   </div>
                   <div>
                     <Label htmlFor="phone">Phone</Label>
-                    <Input id="phone" name="phone" type="tel" required className="mt-2" />
+                    <Input id="phone" name="phone" type="tel" required maxLength={40} className="mt-2" />
+                  </div>
+                  <div>
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" name="email" type="email" required maxLength={255} className="mt-2" />
                   </div>
                   <div>
                     <Label htmlFor="vehicle">Vehicle (year / make / model)</Label>
@@ -146,6 +222,7 @@ const BookNow = () => {
                       name="vehicle"
                       placeholder="e.g. 2022 Ford F-150"
                       required
+                      maxLength={120}
                       className="mt-2"
                     />
                   </div>
@@ -156,12 +233,11 @@ const BookNow = () => {
                         <SelectValue placeholder="Select a service" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="full-detail">Full Detail</SelectItem>
-                        <SelectItem value="ceramic-coating">Ceramic Coating</SelectItem>
-                        <SelectItem value="paint-correction">Paint Correction</SelectItem>
-                        <SelectItem value="interior-odor">Interior & Odor Removal</SelectItem>
-                        <SelectItem value="rv-marine">RV & Marine</SelectItem>
-                        <SelectItem value="not-sure">Not Sure</SelectItem>
+                        {Object.entries(SERVICE_LABELS).map(([value, label]) => (
+                          <SelectItem key={value} value={value}>
+                            {label}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>
@@ -175,8 +251,15 @@ const BookNow = () => {
                       className="mt-2"
                     />
                   </div>
-                  <Button type="submit" size="lg" className="w-full min-h-12">
-                    Send Quote Request
+                  <Button type="submit" size="lg" disabled={submitting} className="w-full min-h-12">
+                    {submitting ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      "Send Quote Request"
+                    )}
                   </Button>
                 </form>
               )}
