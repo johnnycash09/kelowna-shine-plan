@@ -79,7 +79,12 @@ const MaintenanceBooking = () => {
 
   return (
     <div className="min-h-screen bg-background pb-24">
-      <Helmet><title>Schedule your maintenance visit | Santos</title><meta name="robots" content="noindex" /></Helmet>
+      <Helmet>
+        <title>Schedule your maintenance visit | Santos</title>
+        <meta name="robots" content="noindex" />
+        <meta property="og:title" content="Schedule your maintenance visit | Santos" />
+        <meta name="twitter:title" content="Schedule your maintenance visit | Santos" />
+      </Helmet>
       <Navbar />
       <main className="pt-24">
         <div className="container mx-auto px-4 sm:px-6 max-w-2xl">

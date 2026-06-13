@@ -113,7 +113,12 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet><title>Admin Dashboard | Santos</title><meta name="robots" content="noindex" /></Helmet>
+      <Helmet>
+        <title>Admin Dashboard | Santos</title>
+        <meta name="robots" content="noindex" />
+        <meta property="og:title" content="Admin Dashboard | Santos" />
+        <meta name="twitter:title" content="Admin Dashboard | Santos" />
+      </Helmet>
       <header className="border-b border-border">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <h1 className="font-display text-xl font-semibold">Santos Admin</h1>

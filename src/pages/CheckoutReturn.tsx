@@ -50,6 +50,8 @@ const CheckoutReturn = () => {
       <Helmet>
         <title>Payment received | Santos Auto Detailing</title>
         <meta name="robots" content="noindex" />
+        <meta property="og:title" content="Payment received | Santos Auto Detailing" />
+        <meta name="twitter:title" content="Payment received | Santos Auto Detailing" />
       </Helmet>
       <Navbar />
       <main className="pt-32 pb-24">

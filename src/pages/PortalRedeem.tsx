@@ -29,7 +29,12 @@ const PortalRedeem = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet><title>Open billing portal | Santos</title><meta name="robots" content="noindex" /></Helmet>
+      <Helmet>
+        <title>Open billing portal | Santos</title>
+        <meta name="robots" content="noindex" />
+        <meta property="og:title" content="Open billing portal | Santos" />
+        <meta name="twitter:title" content="Open billing portal | Santos" />
+      </Helmet>
       <Navbar />
       <main className="pt-32 pb-24">
         <div className="container mx-auto px-4 max-w-md text-center">

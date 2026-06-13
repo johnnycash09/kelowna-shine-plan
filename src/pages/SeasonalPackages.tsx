@@ -65,6 +65,12 @@ const SeasonalPackages = () => {
           content="Fall boat winterization, spring commissioning, and winter prep ceramic coating packages in Kelowna. Seasonal detailing for boats, RVs and vehicles in the Okanagan."
         />
         <link rel="canonical" href={`${SITE_URL}/seasonal-detailing-kelowna`} />
+        <meta property="og:title" content="Seasonal Detailing Packages Kelowna | Boat Winterization &amp; Spring Detail | Santos" />
+        <meta property="og:description" content="Fall boat winterization, spring commissioning, and winter prep ceramic coating packages in Kelowna. Seasonal detailing for boats, RVs and vehicles in the Okanagan." />
+        <meta property="og:url" content={`${SITE_URL}/seasonal-detailing-kelowna`} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="Seasonal Detailing Packages Kelowna | Boat Winterization &amp; Spring Detail | Santos" />
+        <meta name="twitter:description" content="Fall boat winterization, spring commissioning, and winter prep ceramic coating packages in Kelowna. Seasonal detailing for boats, RVs and vehicles in the Okanagan." />
       </Helmet>
       <Navbar />
 

@@ -8,7 +8,12 @@ import { Button } from "@/components/ui/button";
 
 const QuoteSuccess = () => (
   <div className="min-h-screen bg-background">
-    <Helmet><title>Quote Submitted | Santos Auto Detailing</title><meta name="robots" content="noindex" /></Helmet>
+    <Helmet>
+      <title>Quote Submitted | Santos Auto Detailing</title>
+      <meta name="robots" content="noindex" />
+      <meta property="og:title" content="Quote Submitted | Santos Auto Detailing" />
+      <meta name="twitter:title" content="Quote Submitted | Santos Auto Detailing" />
+    </Helmet>
     <Navbar />
     <main className="pt-32 pb-24">
       <div className="container mx-auto px-4 sm:px-6 max-w-xl text-center">

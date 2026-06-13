@@ -43,19 +43,24 @@ const Blog = () => {
   return (
     <>
       <Helmet>
-        <title>Detailing Tips & Guides for Kelowna Drivers | Santos Blog</title>
+        <title>Detailing Tips &amp; Guides for Kelowna Drivers | Santos Blog</title>
         <meta
           name="description"
           content="Expert detailing guides for Kelowna and Okanagan vehicle owners — ceramic coating, paint correction, mobile detailing, boat care and more."
         />
         <link rel="canonical" href={canonical} />
-        <meta property="og:title" content="Detailing Tips & Guides for Kelowna Drivers | Santos Blog" />
+        <meta property="og:title" content="Detailing Tips &amp; Guides for Kelowna Drivers | Santos Blog" />
         <meta
           property="og:description"
           content="Expert detailing guides for Kelowna and Okanagan vehicle owners — ceramic coating, paint correction, mobile detailing, boat care and more."
         />
         <meta property="og:url" content={canonical} />
         <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="Detailing Tips &amp; Guides for Kelowna Drivers | Santos Blog" />
+        <meta
+          name="twitter:description"
+          content="Expert detailing guides for Kelowna and Okanagan vehicle owners — ceramic coating, paint correction, mobile detailing, boat care and more."
+        />
       </Helmet>
 
       <Navbar />

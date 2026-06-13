@@ -48,6 +48,8 @@ const BoatDetailingGuide = () => {
         />
         <meta property="og:url" content={canonical} />
         <meta property="og:type" content="article" />
+        <meta name="twitter:title" content="Boat Detailing Kelowna — Okanagan Lake Guide | Santos" />
+        <meta name="twitter:description" content="Professional boat detailing in Kelowna for Okanagan Lake watercraft. Gel coat polishing, ceramic coating, winterization and spring commissioning." />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

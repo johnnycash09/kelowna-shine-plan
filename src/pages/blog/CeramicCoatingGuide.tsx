@@ -57,6 +57,8 @@ const CeramicCoatingGuide = () => {
         />
         <meta property="og:url" content={canonical} />
         <meta property="og:type" content="article" />
+        <meta name="twitter:title" content="Ceramic Coating Kelowna — The Complete Guide (2025) | Santos" />
+        <meta name="twitter:description" content="Everything Kelowna drivers need to know about ceramic coating — cost, process, how long it lasts, and why Okanagan UV makes it essential. By Santos Auto Detailing." />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

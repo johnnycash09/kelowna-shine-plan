@@ -35,19 +35,21 @@ const MobileDetailingGuide = () => {
   return (
     <>
       <Helmet>
-        <title>Mobile Detailing Kelowna — How It Works & What to Expect | Santos</title>
+        <title>Mobile Detailing Kelowna — How It Works &amp; What to Expect | Santos</title>
         <meta
           name="description"
           content="How mobile detailing works in Kelowna, what you need at home, what's included, and how Santos comes fully equipped to your driveway. Book today."
         />
         <link rel="canonical" href={canonical} />
-        <meta property="og:title" content="Mobile Detailing Kelowna — How It Works & What to Expect | Santos" />
+        <meta property="og:title" content="Mobile Detailing Kelowna — How It Works &amp; What to Expect | Santos" />
         <meta
           property="og:description"
           content="How mobile detailing works in Kelowna, what you need at home, what's included, and how Santos comes fully equipped to your driveway. Book today."
         />
         <meta property="og:url" content={canonical} />
         <meta property="og:type" content="article" />
+        <meta name="twitter:title" content="Mobile Detailing Kelowna — How It Works &amp; What to Expect | Santos" />
+        <meta name="twitter:description" content="How mobile detailing works in Kelowna, what you need at home, what's included, and how Santos comes fully equipped to your driveway. Book today." />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

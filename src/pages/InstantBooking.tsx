@@ -135,6 +135,8 @@ const InstantBooking = () => {
       <Helmet>
         <title>{`Book ${pkg.name} | Santos Auto Detailing`}</title>
         <meta name="robots" content="noindex" />
+        <meta property="og:title" content={`Book ${pkg.name} | Santos Auto Detailing`} />
+        <meta name="twitter:title" content={`Book ${pkg.name} | Santos Auto Detailing`} />
       </Helmet>
       <Navbar />
 

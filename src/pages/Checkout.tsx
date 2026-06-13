@@ -28,7 +28,12 @@ const Checkout = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Helmet><title>Checkout | Santos Auto Detailing</title><meta name="robots" content="noindex" /></Helmet>
+      <Helmet>
+        <title>Checkout | Santos Auto Detailing</title>
+        <meta name="robots" content="noindex" />
+        <meta property="og:title" content="Checkout | Santos Auto Detailing" />
+        <meta name="twitter:title" content="Checkout | Santos Auto Detailing" />
+      </Helmet>
       <PaymentTestModeBanner />
       <Navbar />
       <main className="pt-28 pb-24">

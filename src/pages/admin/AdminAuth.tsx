@@ -47,7 +47,12 @@ const AdminAuth = () => {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
-      <Helmet><title>Admin | Santos</title><meta name="robots" content="noindex" /></Helmet>
+      <Helmet>
+        <title>Admin | Santos</title>
+        <meta name="robots" content="noindex" />
+        <meta property="og:title" content="Admin | Santos" />
+        <meta name="twitter:title" content="Admin | Santos" />
+      </Helmet>
       <div className="w-full max-w-sm">
         <h1 className="font-display text-2xl font-semibold mb-1">Santos Admin</h1>
         <p className="text-sm text-muted-foreground mb-6">{mode === "signin" ? "Sign in to view bookings" : "Create your admin account"}</p>
