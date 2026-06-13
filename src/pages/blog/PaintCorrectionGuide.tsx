@@ -35,19 +35,21 @@ const PaintCorrectionGuide = () => {
   return (
     <>
       <Helmet>
-        <title>Paint Correction Kelowna — What It Is & What It Costs | Santos</title>
+        <title>Paint Correction Kelowna — What It Is &amp; What It Costs | Santos</title>
         <meta
           name="description"
           content="What is paint correction in Kelowna, how much does it cost, and do you need it before ceramic coating? Full guide from Santos Auto Detailing."
         />
         <link rel="canonical" href={canonical} />
-        <meta property="og:title" content="Paint Correction Kelowna — What It Is & What It Costs | Santos" />
+        <meta property="og:title" content="Paint Correction Kelowna — What It Is &amp; What It Costs | Santos" />
         <meta
           property="og:description"
           content="What is paint correction in Kelowna, how much does it cost, and do you need it before ceramic coating? Full guide from Santos Auto Detailing."
         />
         <meta property="og:url" content={canonical} />
         <meta property="og:type" content="article" />
+        <meta name="twitter:title" content="Paint Correction Kelowna — What It Is &amp; What It Costs | Santos" />
+        <meta name="twitter:description" content="What is paint correction in Kelowna, how much does it cost, and do you need it before ceramic coating? Full guide from Santos Auto Detailing." />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
