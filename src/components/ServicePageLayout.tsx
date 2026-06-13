@@ -51,6 +51,8 @@ const ServicePageLayout = (p: ServicePageProps) => {
         <meta property="og:description" content={p.metaDescription} />
         <meta property="og:url" content={canonical} />
         <meta property="og:type" content="website" />
+        <meta name="twitter:title" content={p.title} />
+        <meta name="twitter:description" content={p.metaDescription} />
         <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>
         <script type="application/ld+json">
           {JSON.stringify(serviceSchema(p.serviceName, p.serviceDescription, p.slug))}
