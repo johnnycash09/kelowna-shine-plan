@@ -14,6 +14,12 @@ const BookNow = () => {
         <title>Book Mobile Detailing in Kelowna | Santos Auto Detailing</title>
         <meta name="description" content="Book your detail in under 60 seconds. Pay a small deposit to reserve your appointment. Mobile detailing across Kelowna and the Okanagan." />
         <link rel="canonical" href="https://santosautodetailing.ca/book" />
+        <meta property="og:title" content="Book Mobile Detailing in Kelowna | Santos Auto Detailing" />
+        <meta property="og:description" content="Book your detail in under 60 seconds. Pay a small deposit to reserve your appointment. Mobile detailing across Kelowna and the Okanagan." />
+        <meta property="og:url" content="https://santosautodetailing.ca/book" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="Book Mobile Detailing in Kelowna | Santos Auto Detailing" />
+        <meta name="twitter:description" content="Book your detail in under 60 seconds. Pay a small deposit to reserve your appointment. Mobile detailing across Kelowna and the Okanagan." />
       </Helmet>
 
       <Navbar />
