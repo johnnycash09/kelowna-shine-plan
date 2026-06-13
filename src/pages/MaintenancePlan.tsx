@@ -204,6 +204,7 @@ const MaintenancePlan = () => {
         </section>
       </main>
       <FooterSection />
+      <StickyMobileCTA />
     </div>
   );
 };
