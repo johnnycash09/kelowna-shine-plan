@@ -33,6 +33,12 @@ const MaintenancePlan = () => {
         <title>Monthly Maintenance Plan | Santos Auto Detailing Kelowna</title>
         <meta name="description" content="Keep your vehicle showroom-clean year-round. Full exterior + interior refresh every month, plus 10% off any one-time service." />
         <link rel="canonical" href="https://santosautodetailing.ca/maintenance" />
+        <meta property="og:title" content="Monthly Maintenance Plan | Santos Auto Detailing Kelowna" />
+        <meta property="og:description" content="Keep your vehicle showroom-clean year-round. Full exterior + interior refresh every month, plus 10% off any one-time service." />
+        <meta property="og:url" content="https://santosautodetailing.ca/maintenance" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="Monthly Maintenance Plan | Santos Auto Detailing Kelowna" />
+        <meta name="twitter:description" content="Keep your vehicle showroom-clean year-round. Full exterior + interior refresh every month, plus 10% off any one-time service." />
       </Helmet>
       <Navbar />
       <main className="pt-28 pb-24">
