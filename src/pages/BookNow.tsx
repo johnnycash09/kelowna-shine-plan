@@ -121,6 +121,7 @@ const BookNow = () => {
       </main>
 
       <FooterSection />
+      <StickyMobileCTA />
     </div>
   );
 };

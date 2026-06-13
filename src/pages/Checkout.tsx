@@ -59,6 +59,7 @@ const Checkout = () => {
         </div>
       </main>
       <FooterSection />
+      <StickyMobileCTA />
     </div>
   );
 };

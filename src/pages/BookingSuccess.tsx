@@ -49,6 +49,7 @@ const BookingSuccess = () => {
         </div>
       </main>
       <FooterSection />
+      <StickyMobileCTA />
     </div>
   );
 };

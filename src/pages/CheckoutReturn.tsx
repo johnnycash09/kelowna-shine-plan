@@ -88,6 +88,7 @@ const CheckoutReturn = () => {
         </div>
       </main>
       <FooterSection />
+      <StickyMobileCTA />
     </div>
   );
 };
