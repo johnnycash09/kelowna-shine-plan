@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-detailing.jpg";
 
 const transition = { type: "spring" as const, duration: 0.8, bounce: 0 };
@@ -40,8 +39,7 @@ const HeroSection = () => {
             transition={{ ...transition, delay: 0.2 }}
             className="font-display text-5xl font-semibold leading-[0.95] tracking-tight text-foreground text-balance sm:text-6xl lg:text-7xl xl:text-[5.5rem]"
           >
-            Premium Mobile<br />
-            <span className="text-gradient-primary">Detailing in Kelowna.</span>
+            The Okanagan's Premium Mobile Detailing & Ceramic Coating.
           </motion.h1>
 
           <motion.p
@@ -50,7 +48,7 @@ const HeroSection = () => {
             transition={{ ...transition, delay: 0.35 }}
             className="mt-8 max-w-xl text-lg text-muted-foreground sm:text-xl"
           >
-            Luxury mobile and in-shop detailing for vehicles, boats, fleets, RVs, and aircraft across the Okanagan.
+            Showroom results at your door — Kelowna to Vernon. Licensed, insured, and trusted with vehicles worth six figures.
           </motion.p>
 
           <motion.div
@@ -59,35 +57,21 @@ const HeroSection = () => {
             transition={{ ...transition, delay: 0.5 }}
             className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4"
           >
-            <Link
-              to="/book"
+            <a
+              href="sms:2508627491"
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-8 py-4 font-display text-base font-semibold text-background transition-all active:scale-[0.98] hover:bg-accent"
             >
-              Book Now
+              Get My Free Quote
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
+            </a>
             <a
-              href="#services"
+              href="https://app.squareup.com/appointments/book/x1rm8kityedh45/LYPG9JNDGAE21/start"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background/40 px-8 py-4 font-display text-base font-medium text-foreground backdrop-blur-md transition-colors hover:bg-secondary"
             >
-              Explore Services
+              Book Online
             </a>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ ...transition, delay: 0.7 }}
-            className="mt-12 flex items-center gap-3"
-          >
-            <div className="flex">
-              {[0, 1, 2, 3, 4].map((i) => (
-                <Star key={i} className="h-4 w-4 fill-accent text-accent" />
-              ))}
-            </div>
-            <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-              5.0 · Trusted by Kelowna vehicle owners
-            </span>
           </motion.div>
         </div>
       </div>
