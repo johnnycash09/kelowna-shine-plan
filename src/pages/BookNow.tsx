@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Check, Zap, Sparkles, ArrowRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 import { Button } from "@/components/ui/button";
 import { PACKAGES } from "@/lib/booking-config";
 
