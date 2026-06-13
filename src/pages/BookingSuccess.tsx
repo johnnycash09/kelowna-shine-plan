@@ -4,6 +4,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -48,6 +49,7 @@ const BookingSuccess = () => {
         </div>
       </main>
       <FooterSection />
+      <StickyMobileCTA />
     </div>
   );
 };

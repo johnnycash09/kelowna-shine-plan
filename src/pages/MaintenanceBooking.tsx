@@ -5,6 +5,7 @@ import { ArrowLeft, CheckCircle2, Loader2 } from "lucide-react";
 import { format } from "date-fns";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -190,6 +191,7 @@ const MaintenanceBooking = () => {
         </div>
       </main>
       <FooterSection />
+      <StickyMobileCTA />
     </div>
   );
 };

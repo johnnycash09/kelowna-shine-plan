@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Check, ArrowRight, Calendar, Percent, ShieldCheck, Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
@@ -203,6 +204,7 @@ const MaintenancePlan = () => {
         </section>
       </main>
       <FooterSection />
+      <StickyMobileCTA />
     </div>
   );
 };
