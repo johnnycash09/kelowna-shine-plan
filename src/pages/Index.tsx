@@ -32,18 +32,20 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Santos Auto Detailing | Ceramic Coating &amp; Mobile Detailing Kelowna BC</title>
+        <title>Mobile Detailing &amp; Ceramic Coating Kelowna | Santos Auto Detailing</title>
         <meta
           name="description"
-          content="Kelowna's top-rated mobile detailing, ceramic coating, PPF and paint correction. 5.0 stars across 140+ Google reviews. Serving Kelowna and the Okanagan."
+          content="Kelowna's premium mobile detailing, ceramic coating and paint correction. Licensed and insured, we come to you across the Okanagan. Get a free quote today."
         />
         <link rel="canonical" href={`${SITE_URL}/`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="Santos Auto Detailing | Premium Mobile Detailing in Kelowna" />
-        <meta property="og:description" content="Premium mobile detailing, ceramic coating and paint correction in Kelowna and the Okanagan." />
+        <meta property="og:title" content="Mobile Detailing &amp; Ceramic Coating Kelowna | Santos Auto Detailing" />
+        <meta property="og:description" content="Kelowna's premium mobile detailing, ceramic coating and paint correction. Licensed and insured, we come to you across the Okanagan. Get a free quote today." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={SITE_URL} />
         <meta property="og:image" content="https://santosautodetailing.ca/og-image.jpg" />
+        <meta name="twitter:title" content="Mobile Detailing &amp; Ceramic Coating Kelowna | Santos Auto Detailing" />
+        <meta name="twitter:description" content="Kelowna's premium mobile detailing, ceramic coating and paint correction. Licensed and insured, we come to you across the Okanagan. Get a free quote today." />
         <script type="application/ld+json">{JSON.stringify(localBusinessSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(faqSchema(HOMEPAGE_FAQS))}</script>
       </Helmet>
