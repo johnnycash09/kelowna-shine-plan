@@ -25,6 +25,8 @@ const BookingSuccess = () => {
       <Helmet>
         <title>Booking Confirmed | Santos Auto Detailing</title>
         <meta name="robots" content="noindex" />
+        <meta property="og:title" content="Booking Confirmed | Santos Auto Detailing" />
+        <meta name="twitter:title" content="Booking Confirmed | Santos Auto Detailing" />
       </Helmet>
       <Navbar />
       <main className="pt-32 pb-24">
