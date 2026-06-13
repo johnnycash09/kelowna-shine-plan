@@ -78,6 +78,11 @@ const CustomQuote = () => {
       <Helmet>
         <title>Get a Custom Detailing Quote | Santos Auto Detailing</title>
         <meta name="description" content="Request a custom quote for paint correction, ceramic coating, boats, RVs, aircraft, or fleet detailing." />
+        <meta property="og:title" content="Get a Custom Detailing Quote | Santos Auto Detailing" />
+        <meta property="og:description" content="Request a custom quote for paint correction, ceramic coating, boats, RVs, aircraft, or fleet detailing." />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:title" content="Get a Custom Detailing Quote | Santos Auto Detailing" />
+        <meta name="twitter:description" content="Request a custom quote for paint correction, ceramic coating, boats, RVs, aircraft, or fleet detailing." />
       </Helmet>
       <Navbar />
 
