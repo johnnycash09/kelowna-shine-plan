@@ -177,6 +177,7 @@ const CustomQuote = () => {
       </main>
 
       <FooterSection />
+      <StickyMobileCTA />
     </div>
   );
 };

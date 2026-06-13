@@ -191,6 +191,7 @@ const MaintenanceBooking = () => {
         </div>
       </main>
       <FooterSection />
+      <StickyMobileCTA />
     </div>
   );
 };
