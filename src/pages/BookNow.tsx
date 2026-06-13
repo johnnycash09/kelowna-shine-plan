@@ -1,25 +1,53 @@
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
-import { Check, Zap, Sparkles, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { MessageSquare, Calendar } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import { Button } from "@/components/ui/button";
-import { PACKAGES } from "@/lib/booking-config";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const SQUARE_BOOK_URL =
+  "https://app.squareup.com/appointments/book/x1rm8kityedh45/LYPG9JNDGAE21/start";
 
 const BookNow = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const [service, setService] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Book Mobile Detailing in Kelowna | Santos Auto Detailing</title>
-        <meta name="description" content="Book your detail in under 60 seconds. Pay a small deposit to reserve your appointment. Mobile detailing across Kelowna and the Okanagan." />
+        <meta
+          name="description"
+          content="Book your detail with Santos Auto Detailing. Text a photo for a custom quote or book online instantly. Mobile detailing across Kelowna and the Okanagan."
+        />
         <link rel="canonical" href="https://santosautodetailing.ca/book" />
         <meta property="og:title" content="Book Mobile Detailing in Kelowna | Santos Auto Detailing" />
-        <meta property="og:description" content="Book your detail in under 60 seconds. Pay a small deposit to reserve your appointment. Mobile detailing across Kelowna and the Okanagan." />
+        <meta
+          property="og:description"
+          content="Book your detail with Santos Auto Detailing. Text a photo for a custom quote or book online instantly."
+        />
         <meta property="og:url" content="https://santosautodetailing.ca/book" />
         <meta property="og:type" content="website" />
         <meta name="twitter:title" content="Book Mobile Detailing in Kelowna | Santos Auto Detailing" />
-        <meta name="twitter:description" content="Book your detail in under 60 seconds. Pay a small deposit to reserve your appointment. Mobile detailing across Kelowna and the Okanagan." />
+        <meta
+          name="twitter:description"
+          content="Book your detail with Santos Auto Detailing. Text a photo for a custom quote or book online instantly."
+        />
       </Helmet>
 
       <Navbar />
@@ -27,101 +55,136 @@ const BookNow = () => {
       <main className="pt-28 pb-24">
         <section className="container mx-auto px-4 sm:px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-4">Book Now</p>
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-semibold mb-5">
-              Reserve your detail in under 60 seconds.
-            </h1>
-            <p className="text-lg text-muted-foreground mb-3">
-              Premium detailing for daily drivers, luxury vehicles, boats, RVs, fleets, and aircraft.
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-4">
+              Book Now
             </p>
-            <p className="text-sm text-muted-foreground">
-              Mobile service available across Kelowna and the Okanagan. Deposit goes toward your final total.
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-semibold mb-5">
+              Two easy ways to book.
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Pick the path that fits. We reply fast — usually within the hour.
             </p>
           </div>
 
           {/* Two paths */}
           <div className="mt-14 grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             <div className="rounded-lg border border-border bg-card p-6 sm:p-8 flex flex-col">
-              <Zap className="h-7 w-7 text-accent mb-4" />
-              <h2 className="font-display text-2xl font-semibold mb-2">Instant Booking</h2>
-              <p className="text-muted-foreground text-sm mb-5 flex-1">
-                Standard interior, exterior or full details. Pick a package, choose your vehicle, pay a deposit, done.
+              <MessageSquare className="h-7 w-7 text-accent mb-4" />
+              <h2 className="font-display text-2xl font-semibold mb-2">
+                Not sure what you need?
+              </h2>
+              <p className="text-muted-foreground text-sm mb-6 flex-1">
+                Send a photo and we'll recommend the right package and exact price, usually within the hour.
               </p>
-              <a href="#packages" className="inline-flex">
-                <Button size="lg" className="w-full sm:w-auto">
-                  Choose a package <ArrowRight className="ml-2 h-4 w-4" />
+              <a href="sms:2508627491" className="inline-flex">
+                <Button size="lg" className="w-full sm:w-auto min-h-12">
+                  Text a Photo
                 </Button>
               </a>
             </div>
             <div className="rounded-lg border border-border bg-card p-6 sm:p-8 flex flex-col">
-              <Sparkles className="h-7 w-7 text-accent mb-4" />
-              <h2 className="font-display text-2xl font-semibold mb-2">Get a Custom Quote</h2>
-              <p className="text-muted-foreground text-sm mb-5 flex-1">
-                Paint correction, ceramic coating, boats, RVs, aircraft, fleets, or anything oversized. We'll review and reply with the right package.
+              <Calendar className="h-7 w-7 text-accent mb-4" />
+              <h2 className="font-display text-2xl font-semibold mb-2">
+                Know what you want?
+              </h2>
+              <p className="text-muted-foreground text-sm mb-6 flex-1">
+                Pick your service and time online and we'll see you at your door.
               </p>
-              <Link to="/book/quote" className="inline-flex">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-                  Request custom quote <ArrowRight className="ml-2 h-4 w-4" />
+              <a
+                href={SQUARE_BOOK_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex"
+              >
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full sm:w-auto min-h-12 border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+                >
+                  Book Online
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
 
-          {/* Packages */}
-          <div id="packages" className="mt-24 scroll-mt-24">
-            <div className="text-center mb-10">
-              <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-3">Standard Packages</p>
-              <h2 className="font-display text-3xl sm:text-4xl font-semibold">Pick a package to start</h2>
-              <p className="text-muted-foreground mt-3 text-sm">Pricing adjusts based on vehicle size and condition.</p>
+          {/* Quote form */}
+          <div className="mt-20 max-w-2xl mx-auto">
+            <div className="text-center mb-8">
+              <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-3">
+                Quick Quote
+              </p>
+              <h2 className="font-display text-3xl sm:text-4xl font-semibold">
+                Tell us about your vehicle
+              </h2>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto">
-              {PACKAGES.map((pkg) => (
-                <div key={pkg.slug} className="rounded-lg border border-border bg-card p-6 flex flex-col hover:border-accent/60 transition">
-                  <h3 className="font-display text-xl font-semibold mb-1">{pkg.name}</h3>
-                  <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground mb-3">Starting</p>
-                  <div className="mb-4">
-                    <span className="font-display text-3xl font-semibold">${pkg.basePrice}</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-4">{pkg.description}</p>
-                  <ul className="space-y-2 text-sm mb-6 flex-1">
-                    {pkg.included.map((f) => (
-                      <li key={f} className="flex items-start gap-2">
-                        <Check className="h-4 w-4 text-accent mt-0.5 shrink-0" />
-                        <span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link to={`/book/instant/${pkg.slug}`}>
-                    <Button className="w-full">Book with ${pkg.deposit} deposit</Button>
-                  </Link>
-                  <Link to={`/book/instant/${pkg.slug}?pay=full`}>
-                    <Button className="w-full mt-2" variant="outline">Pay full ${pkg.basePrice}</Button>
-                  </Link>
-                  <p className="text-xs text-muted-foreground text-center mt-3">Sedan-size base price. Taxes calculated at checkout.</p>
+            <div className="rounded-lg border border-border bg-card p-6 sm:p-8">
+              {submitted ? (
+                <div className="text-center py-8">
+                  <p className="font-display text-xl sm:text-2xl">
+                    Got it — text a photo to{" "}
+                    <a href="sms:2508627491" className="text-accent underline underline-offset-4">
+                      (250) 862-7491
+                    </a>{" "}
+                    to speed things up. We usually reply within the hour.
+                  </p>
                 </div>
-              ))}
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div>
+                    <Label htmlFor="name">Name</Label>
+                    <Input id="name" name="name" required className="mt-2" />
+                  </div>
+                  <div>
+                    <Label htmlFor="phone">Phone</Label>
+                    <Input id="phone" name="phone" type="tel" required className="mt-2" />
+                  </div>
+                  <div>
+                    <Label htmlFor="vehicle">Vehicle (year / make / model)</Label>
+                    <Input
+                      id="vehicle"
+                      name="vehicle"
+                      placeholder="e.g. 2022 Ford F-150"
+                      required
+                      className="mt-2"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="service">What do you want done?</Label>
+                    <Select value={service} onValueChange={setService}>
+                      <SelectTrigger id="service" className="mt-2">
+                        <SelectValue placeholder="Select a service" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="full-detail">Full Detail</SelectItem>
+                        <SelectItem value="ceramic-coating">Ceramic Coating</SelectItem>
+                        <SelectItem value="paint-correction">Paint Correction</SelectItem>
+                        <SelectItem value="interior-odor">Interior & Odor Removal</SelectItem>
+                        <SelectItem value="rv-marine">RV & Marine</SelectItem>
+                        <SelectItem value="not-sure">Not Sure</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor="photo">Photo (optional)</Label>
+                    <Input
+                      id="photo"
+                      name="photo"
+                      type="file"
+                      accept="image/*"
+                      className="mt-2"
+                    />
+                  </div>
+                  <Button type="submit" size="lg" className="w-full min-h-12">
+                    Send Quote Request
+                  </Button>
+                </form>
+              )}
             </div>
 
-            <p className="text-center text-sm text-muted-foreground mt-10 max-w-xl mx-auto">
-              Not sure what you need?{" "}
-              <Link to="/book/quote" className="text-accent underline underline-offset-4">Choose custom quote</Link>{" "}
-              and we'll recommend the right package.
+            <p className="text-center text-sm text-muted-foreground mt-8">
+              ★★★★★ 5.0 Google Reviews · Licensed &amp; Insured · We Come To You
             </p>
-          </div>
-
-          {/* Maintenance plan upsell */}
-          <div className="mt-20 max-w-5xl mx-auto rounded-lg border border-accent/40 bg-card p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <div className="flex-1">
-              <p className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-2">New — Subscribe & save</p>
-              <h3 className="font-display text-2xl font-semibold mb-2">Santos Maintenance Plan — $199 / month</h3>
-              <p className="text-sm text-muted-foreground">Monthly full detail + 10% off any one-time service. Cancel anytime.</p>
-            </div>
-            <Link to="/maintenance">
-              <Button size="lg" variant="outline" className="border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-                Learn more <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
           </div>
         </section>
       </main>
