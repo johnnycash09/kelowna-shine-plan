@@ -27,6 +27,7 @@ import BookingSuccess from "./pages/BookingSuccess.tsx";
 import QuoteSuccess from "./pages/QuoteSuccess.tsx";
 import AdminAuth from "./pages/admin/AdminAuth.tsx";
 import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
+import ResetPassword from "./pages/admin/ResetPassword.tsx";
 import MaintenancePlan from "./pages/MaintenancePlan.tsx";
 import Checkout from "./pages/Checkout.tsx";
 import CheckoutReturn from "./pages/CheckoutReturn.tsx";
@@ -87,6 +88,7 @@ const App = () => (
             <Route path="/blog/boat-detailing-kelowna" element={<BoatDetailingGuide />} />
             <Route path="/admin" element={<AdminAuth />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/reset-password" element={<ResetPassword />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
